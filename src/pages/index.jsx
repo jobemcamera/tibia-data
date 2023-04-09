@@ -1,7 +1,8 @@
 import React from 'react'
+import Menu from '../components/Menu'
 
 export default function Home() {
-  return (
-    <h1>Welcome to Tibia Data</h1>
-  )
+    return (
+        <Menu />
+    )
 }
