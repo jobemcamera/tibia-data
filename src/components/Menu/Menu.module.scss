@@ -1,5 +1,26 @@
 @import "../../styles/variables";
 
-// .menu {
-
-// }
+.menu {
+    border: 3px solid $background-color-page;
+    background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
+    background-repeat: repeat-x;
+    background-size: contain;
+    width: 30%;
+    margin: 20px auto;
+    &__lista {
+        display: flex;
+        flex-wrap: wrap;
+        // gap: 50px;
+        text-align: center;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0;
+        li {
+            display: flex;
+            a {
+                text-decoration: none;
+                color: $title-color;
+            }
+        }
+    }
+}

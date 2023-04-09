@@ -4,21 +4,23 @@ import styles from './Menu.module.scss'
 
 export default function Menu() {
     return (
-        <nav className={styles.menu}>
-            <ul>
-                <li>
-                    <a href="#">Creatures</a>
-                </li>
-                <li>
-                    <a href="#">Bosses</a>
-                </li>
-                <li>
-                    <a href="#">Characteres</a>
-                </li>
-                <li>
-                    <a href="#">Worlds</a>
-                </li>
-            </ul>
-        </nav>
+        <header>
+            <nav className={styles.menu}>
+                <ul className={styles.menu__lista}>
+                    <li className={styles}>
+                        <a href="#" className={styles}>Creatures</a>
+                    </li>
+                    <li className={styles}>
+                        <a href="#" className={styles}>Bosses</a>
+                    </li>
+                    <li className={styles}>
+                        <a href="#" className={styles}>Characteres</a>
+                    </li>
+                    <li className={styles}>
+                        <a href="#" className={styles}>Worlds</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     )
 }
