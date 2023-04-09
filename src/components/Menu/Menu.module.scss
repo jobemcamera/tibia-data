@@ -7,10 +7,11 @@
     background-size: contain;
     width: 30%;
     margin: 20px auto;
+    border-radius: 15px;
+    box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
     &__lista {
         display: flex;
         flex-wrap: wrap;
-        // gap: 50px;
         text-align: center;
         align-items: center;
         justify-content: space-around;
@@ -20,6 +21,20 @@
             a {
                 text-decoration: none;
                 color: $title-color;
+                font-size: $secundary-size;
+                text-shadow: $text-shadow;
+                position: relative;
+                &:hover {
+                    color: $button-color;
+                }
+                &:hover::before {
+                    content: '';
+                    position: absolute;
+                    border-bottom: 2px solid $button-color;
+                    display: flex;
+                    width: 100%;
+                    bottom: -1px;
+                }
             }
         }
     }

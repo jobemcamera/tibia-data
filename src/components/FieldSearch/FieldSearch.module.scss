@@ -1,0 +1,22 @@
+@import "../../styles/variables";
+
+.field__container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 0 10px 20px 10px;
+    label {
+        color: $secundary-color;
+        font-weight: 700;
+        min-width: 140px;
+    }
+    input {
+        padding: 5px 20px;
+        width: 80%;
+        display: flex;
+        border-radius: 20px;
+        font-size: $secundary-size;
+        box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
+    }
+}
