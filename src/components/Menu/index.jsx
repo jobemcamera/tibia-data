@@ -14,7 +14,7 @@ export default function Menu() {
                         <a href="#" className={styles}>Bosses</a>
                     </li>
                     <li className={styles}>
-                        <a href="#" className={styles}>Characteres</a>
+                        <a href="#" className={styles}>Characters</a>
                     </li>
                     <li className={styles}>
                         <a href="#" className={styles}>Worlds</a>
