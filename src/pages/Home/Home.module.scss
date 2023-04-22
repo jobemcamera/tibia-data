@@ -1,0 +1,15 @@
+@import "../../styles/variables";
+
+.home {
+    padding: 1em;
+    color: $secundary-color;
+    background-color: $background-color-content;
+    h1 {
+        text-align: center;
+    }
+    article {
+        p {
+            line-height: 25px;
+        }
+    }
+}
