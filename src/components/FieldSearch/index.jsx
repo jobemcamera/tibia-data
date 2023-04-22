@@ -2,10 +2,10 @@ import Button from "../Button";
 import styles from "./FieldSearch.module.scss";
 import React from 'react'
 
-export default function FieldSearch() {
+export default function FieldSearch( {name} ) {
     return (
         <div className={styles.field__container}>
-            <label>Creature Name</label>
+            <label>{name} Name</label>
             <input type="text" />
             <Button />
         </div>

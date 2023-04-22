@@ -1,7 +1,11 @@
+import Form from 'components/Form'
 import React from 'react'
 
 export default function Characters() {
     return (
-        <h1>Characters</h1>
+        <>
+            <Form name="Character" />
+            <h1></h1>
+        </>
     )
 }
