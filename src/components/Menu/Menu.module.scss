@@ -16,26 +16,5 @@
         align-items: center;
         justify-content: space-around;
         padding: 0;
-        li {
-            display: flex;
-            a {
-                text-decoration: none;
-                color: $title-color;
-                font-size: $secundary-size;
-                text-shadow: $text-shadow;
-                position: relative;
-                &:hover {
-                    color: $button-color;
-                }
-                &:hover::before {
-                    content: '';
-                    position: absolute;
-                    border-bottom: 2px solid $button-color;
-                    display: flex;
-                    width: 100%;
-                    bottom: -1px;
-                }
-            }
-        }
     }
 }

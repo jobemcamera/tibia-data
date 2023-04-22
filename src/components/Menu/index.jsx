@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Menu.module.scss'
+import MenuLink from 'components/MenuLink'
 
 
 export default function Menu() {
@@ -7,18 +8,21 @@ export default function Menu() {
         <header>
             <nav className={styles.menu}>
                 <ul className={styles.menu__lista}>
-                    <li className={styles}>
-                        <a href="#" className={styles}>Creatures</a>
-                    </li>
-                    <li className={styles}>
-                        <a href="#" className={styles}>Bosses</a>
-                    </li>
-                    <li className={styles}>
-                        <a href="#" className={styles}>Characters</a>
-                    </li>
-                    <li className={styles}>
-                        <a href="#" className={styles}>Worlds</a>
-                    </li>
+                    <MenuLink to="/">
+                        Home
+                    </MenuLink>
+                    <MenuLink to="creatures">
+                        Creatures
+                    </MenuLink>
+                    <MenuLink to="bosses">
+                        Bosses
+                    </MenuLink>
+                    <MenuLink to="characters">
+                        Characters
+                    </MenuLink>
+                    <MenuLink to="worlds">
+                        Worlds
+                    </MenuLink>
                 </ul>
             </nav>
         </header>

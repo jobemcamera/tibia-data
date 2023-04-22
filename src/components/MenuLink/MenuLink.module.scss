@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+li {
+    display: flex;
+    .link {
+        text-decoration: none;
+        color: $title-color;
+        font-size: $secundary-size;
+        text-shadow: $text-shadow;
+        position: relative;
+        &:hover {
+            color: $button-color;
+        }
+        &:hover::before {
+            content: '';
+            position: absolute;
+            border-bottom: 2px solid $button-color;
+            display: flex;
+            width: 100%;
+            bottom: -1px;
+        }
+    }
+}
