@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 
 export default function MenuLink({ to, children }) {
     return (
-        <li className={styles}>
+        <li className={styles.list__link}>
             <NavLink to={to} className={styles.link}>
                 {children}
             </NavLink>
