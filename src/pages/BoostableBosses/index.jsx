@@ -1,7 +1,8 @@
+import CardBosses from 'components/CardBosses';
 import Form from 'components/Form'
 import React, { useEffect, useState } from 'react'
 
-export default function Bosses() {
+export default function BoostableBosses() {
 
     const [bosses, setBosses] = useState([])
 
@@ -20,11 +21,7 @@ export default function Bosses() {
         <>
             <Form name="Boss" />
 
-            <div>
-                <ul>
-                    {bosses.map(boss => <li key={boss.name}>{boss.name}</li>)}
-                </ul>
-            </div>
+            <CardBosses bosses={bosses}/>
         </>
     )
 }

@@ -14,8 +14,8 @@ export default function Menu() {
                     <MenuLink to="creatures">
                         Creatures
                     </MenuLink>
-                    <MenuLink to="bosses">
-                        Bosses
+                    <MenuLink to="boostablebosses">
+                        Boostable Bosses
                     </MenuLink>
                     <MenuLink to="characters">
                         Characters
