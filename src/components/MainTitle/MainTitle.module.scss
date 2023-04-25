@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+
+h1 {
+    color: $main-color;
+    background-color: $background-color-form;
+    font-size: 22px;
+    padding: 0.5em;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 15px 15px 0 0;
+} 

@@ -7,15 +7,4 @@
     border-radius: 20px;
     background-color: $background-color-content;
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
-    .form {
-        padding: 0 20px;
-        h2 {
-            color: $main-color;
-            background-color: $background-color-form;
-            padding: 10px;
-            width: calc(100% - 10px);
-            box-sizing: border-box;
-            border-radius: 15px;
-        }
-    }
 }

@@ -5,7 +5,7 @@ import React from 'react'
 export default function FieldSearch( {name} ) {
     return (
         <div className={styles.field__container}>
-            <label>{name} Name</label>
+            <label>{name}</label>
             <input type="text" />
             <Button />
         </div>
