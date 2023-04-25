@@ -1,13 +1,13 @@
 @import "../../styles/variables";
 
-.list__bosses {
+.list__items {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     text-align: center;
     justify-content: center;
     padding-inline-start: 0;
-    .list__boss {
+    .list__item {
         width: 150px;
         height: 160px;
         &__title {

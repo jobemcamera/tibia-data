@@ -1,5 +1,5 @@
 import Boosted from 'components/Boosted';
-import CardBosses from 'components/CardBosses';
+import Card from 'components/Card';
 import React, { useEffect, useState } from 'react'
 
 export default function BoostableBosses() {
@@ -33,7 +33,7 @@ export default function BoostableBosses() {
     return (
         <>
             <Boosted boosted={boosted}/>
-            <CardBosses bosses={bosses}/>
+            <Card item={bosses}/>
         </>
     )
 }
