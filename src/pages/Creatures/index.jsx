@@ -33,7 +33,7 @@ export default function Creatures() {
 
     return (
         <>
-            <Boosted boosted={boosted}/>
+            <Boosted boosted={boosted} name='Creatures' text="creature"/>
             <Card item={creatures}/>
         </>
     )

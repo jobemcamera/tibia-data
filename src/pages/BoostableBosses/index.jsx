@@ -32,7 +32,7 @@ export default function BoostableBosses() {
 
     return (
         <>
-            <Boosted boosted={boosted}/>
+            <Boosted boosted={boosted} name="Boostable Bosses" text="boss"/>
             <Card item={bosses}/>
         </>
     )
