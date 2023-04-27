@@ -14,7 +14,7 @@ export default function Creatures() {
             const jsonData = await response.json();
             setBoosted(jsonData.creatures.boosted);
         };
-
+        
         boostedCreature();
 
     }, [])
