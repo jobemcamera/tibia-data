@@ -29,12 +29,32 @@ table {
             &:nth-child(even) {
                 background-color: $background-color-content;
             }
+            &:last-child {
+                td:first-child {
+                    border-radius: 0 0 0 15px;
+                }
+                td:last-child {
+                    border-radius: 0 0 15px 0;
+                }
+            }
             td {
                 width: auto;
                 height: 25px;
                 padding: 0 7px;
+                .flags {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    img {
+                        width: 30px;
+                        height: 25px;
+                    }
+                }
                 &:nth-child(2) {
                     text-align: right;
+                }
+                &:last-child {
+                    text-align: center;
                 }
             }
         }
