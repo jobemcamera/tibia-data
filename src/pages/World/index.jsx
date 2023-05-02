@@ -1,7 +1,8 @@
 import MainTitle from 'components/MainTitle';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Moment from 'react-moment';
+import 'moment-timezone';
 
 export default function World() {
     const { world } = useParams();
@@ -18,6 +19,14 @@ export default function World() {
         worldsInfo();
 
     }, []);
+
+    function formatDate(date, style) {
+        return (
+            <Moment format={style} tz="Europe/Paris">
+                {date}
+            </Moment>
+        )
+    }
 
     return (
         <section>
@@ -39,17 +48,13 @@ export default function World() {
                             <td>Online Record:</td>
                             <td>
                                 {`${worldInfo.record_players} players on `}
-                                <Moment format="MMM D YYYY, HH:mm:ss">
-                                    {worldInfo.record_date}
-                                </Moment>
+                                {formatDate(worldInfo.record_date, "MMMM D YYYY, HH:mm:ss z")}
                             </td>
                         </tr>
                         <tr>
                             <td>Creation Date:</td>
                             <td>
-                                <Moment format="MMM YYYY">
-                                    {worldInfo.creation_date}
-                                </Moment>
+                                {formatDate(worldInfo.creation_date, "MMMM YYYY")}
                             </td>
                         </tr>
                         <tr>
@@ -72,9 +77,7 @@ export default function World() {
                                 worldInfo.battleye_protected === true && worldInfo.battleye_date !== "release" ?
                                     (<>
                                         Protected by BattlEye since {" "}
-                                        <Moment format="MMMM DD, YYYY">
-                                            {worldInfo.battleye_date}
-                                        </Moment>
+                                        {formatDate(worldInfo.battleye_date, "MMMM DD, YYYY")}
                                     </>)
                                     : worldInfo.battleye_protected === true ?
                                         ("Protected by BattlEye since its release.")
