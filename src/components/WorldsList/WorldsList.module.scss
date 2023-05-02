@@ -41,6 +41,15 @@ table {
                 width: auto;
                 height: 25px;
                 padding: 0 7px;
+                a {
+                    text-decoration: none;
+                    color: $link-color;
+                    font-weight: 700;
+                    a:visited {
+                        color: none;
+                        text-decoration: none;
+                    }
+                }
                 .flags {
                     display: flex;
                     align-items: center;
