@@ -18,7 +18,7 @@ export default function World() {
 
         worldsInfo();
 
-    }, []);
+    }, [world]);
 
     function formatDate(date, style) {
         return (
