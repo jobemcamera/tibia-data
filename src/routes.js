@@ -7,6 +7,7 @@ import Creatures from "./pages/Creatures";
 import BoostableBosses from "./pages/BoostableBosses";
 import Characters from "./pages/Characters";
 import Worlds from "./pages/Worlds";
+import World from "pages/World";
 
 function AppRoutes() {
 	return (
@@ -19,6 +20,7 @@ function AppRoutes() {
 					<Route path="boostablebosses" element={<BoostableBosses />} />
 					<Route path="characters" element={<Characters />} />
 					<Route path="worlds" element={<Worlds />} />
+					<Route path="worlds/:world" element={<World />} />
 				</Route>
 			</Routes>
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import styles from './WorldsList.module.scss'
-// import greenBE from 'assets/icon_battleyeinitial.gif'
-// import yellowBE from 'assets/icon_battleye.gif'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function WorldsList({ worlds }) {
 
@@ -22,7 +21,11 @@ export default function WorldsList({ worlds }) {
                     <tbody>
                         {worlds.map(world => (
                             <tr key={world.name}>
-                                <td>{world.name}</td>
+                                <td>
+                                    <Link to={world.name}>
+                                        {world.name}
+                                    </Link>
+                                </td>
                                 <td>{world.players_online}</td>
                                 <td>{
                                     world.location === 'Europe' ? (
@@ -47,12 +50,12 @@ export default function WorldsList({ worlds }) {
                                 <td>{world.transfer_type}</td>
                                 <td>
                                     {
-                                        world.battleye_date == "release" ? (
+                                        world.battleye_date === "release" ? (
                                             <img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Yellow BattlEye item' />
-                                        ) : world.battleye_date == "" ? (
-                                                <p></p>
-                                        ): (
-                                            <img src = { 'https://static.tibia.com/images/global/content/icon_battleye.gif' } alt = 'Green BattlEye item' />
+                                        ) : world.battleye_date === "" ? (
+                                            <p></p>
+                                        ) : (
+                                            <img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Green BattlEye item' />
                                         )
                                     }
                                 </td>
