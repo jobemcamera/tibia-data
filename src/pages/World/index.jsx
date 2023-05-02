@@ -46,7 +46,11 @@ export default function World() {
                         </tr>
                         <tr>
                             <td>Creation Date:</td>
-                            <td>{worldInfo.creation_date}</td>
+                            <td>
+                                <Moment format="MMM YYYY">
+                                    {worldInfo.creation_date}
+                                </Moment>
+                            </td>
                         </tr>
                         <tr>
                             <td>Location:</td>
@@ -64,7 +68,19 @@ export default function World() {
                         </tr>
                         <tr>
                             <td>BattlEye Status:</td>
-                            <td>{worldInfo.battleye_protected}</td>
+                            <td>{
+                                worldInfo.battleye_protected === true && worldInfo.battleye_date !== "release" ?
+                                    (<>
+                                        Protected by BattlEye since {" "}
+                                        <Moment format="MMMM DD, YYYY">
+                                            {worldInfo.battleye_date}
+                                        </Moment>
+                                    </>)
+                                    : worldInfo.battleye_protected === true ?
+                                        ("Protected by BattlEye since its release.")
+                                        : ("Not protected by BattlEye.")
+                            }
+                            </td>
                         </tr>
                         <tr>
                             <td>Game World Type:</td>
