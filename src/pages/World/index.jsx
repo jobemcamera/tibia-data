@@ -4,6 +4,15 @@ import { useParams } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment-timezone';
 
+
+export function formatDate(date, style) {
+    return (
+        <Moment format={style} tz="Europe/Paris">
+            {date}
+        </Moment>
+    )
+}
+
 export default function World() {
     const { world } = useParams();
 
@@ -19,14 +28,6 @@ export default function World() {
         worldsInfo();
 
     }, [world]);
-
-    function formatDate(date, style) {
-        return (
-            <Moment format={style} tz="Europe/Paris">
-                {date}
-            </Moment>
-        )
-    }
 
     return (
         <section>

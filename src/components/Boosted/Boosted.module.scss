@@ -6,15 +6,6 @@
     background-color: $background-color-content;
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
 
-    .boosted__title {
-        color: $main-color;
-        background-color: $background-color-form;
-        padding: 0.5em;
-        width: 100%;
-        box-sizing: border-box;
-        border-radius: 15px 15px 0 0;
-    }
-
     .boosted__context {
         padding: 1em 2em;
         display: flex;
