@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './styles/globalStyles.scss';
-import Menu from "./components/Menu";
-import DefaultPage from "./pages/DefaultPage";
-import Home from "./pages/Home";
-import Creatures from "./pages/Creatures";
-import BoostableBosses from "./pages/BoostableBosses";
-import Characters from "./pages/Characters";
-import Worlds from "./pages/Worlds";
+import Menu from "components/Menu";
+import DefaultPage from "pages/DefaultPage";
+import Home from "pages/Home";
+import Creatures from "pages/Creatures";
+import BoostableBosses from "pages/BoostableBosses";
+import Characters from "pages/Characters";
+import Worlds from "pages/Worlds";
 import World from "pages/World";
+import Footer from "components/Footer";
 
 function AppRoutes() {
 	return (
@@ -23,7 +24,7 @@ function AppRoutes() {
 					<Route path="worlds/:world" element={<World />} />
 				</Route>
 			</Routes>
-
+			<Footer />
 		</BrowserRouter>
 	);
 }
