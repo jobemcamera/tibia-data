@@ -4,11 +4,9 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
     background-image: url('https://static.tibia.com/images/global/header/background-artwork.jpg');
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center-top;
+    background-position: center top;
     background-color: $background-color-page;
     color: $main-color;
     font-family: $main-font;
@@ -26,4 +24,17 @@ ul {
 table, thead, th, tbody, td, tr {
     padding: 0;
     margin: 0;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: $background-color-content;
+    border-radius: 20px;
+}
+  
+body::-webkit-scrollbar-track {
+    background-color: $background-color-page;
+}
+
+body::-webkit-scrollbar {
+    width: 5px;
 }
