@@ -30,13 +30,13 @@ export default function WorldsList({ worlds }) {
     return (
         <>
             <section>
-                <table className={styles}>
-                    <thead>
-                        <tr>
-                            <th>World</th>
-                            <th>Online</th>
-                            <th>
-                                <div>
+                <table className={styles.worldslist__table}>
+                    <thead className={styles.worldslist__table__thead}>
+                        <tr className={styles.worldslist__table__thead__tr}>
+                            <th className={styles.worldslist__table__thead__tr__th}>World</th>
+                            <th className={styles.worldslist__table__thead__tr__th}>Online</th>
+                            <th className={styles.worldslist__table__thead__tr__th}>
+                                <div className={styles.worldslist__options__container}>
                                     <span>Location </span>
                                     <select name="location" value={filters.location} onChange={handleFilterChange}>
                                         <option value="">All</option>
@@ -46,8 +46,8 @@ export default function WorldsList({ worlds }) {
                                     </select>
                                 </div>
                             </th>
-                            <th>
-                                <div>
+                            <th className={styles.worldslist__table__thead__tr__th}>
+                                <div className={styles.worldslist__options__container}>
                                     <span>PvP Type </span>
                                     <select name="pvp_type" value={filters.pvp_type} onChange={handleFilterChange}>
                                         <option value="">All</option>
@@ -59,8 +59,8 @@ export default function WorldsList({ worlds }) {
                                     </select>
                                 </div>
                             </th>
-                            <th>
-                                <div>
+                            <th className={styles.worldslist__table__thead__tr__th}>
+                                <div className={styles.worldslist__options__container}>
                                     <span>Transfer Type </span>
                                     <select name="transfer_type" value={filters.transfer_type} onChange={handleFilterChange}>
                                         <option value="">All</option>
@@ -70,19 +70,19 @@ export default function WorldsList({ worlds }) {
                                     </select>
                                 </div>
                             </th>
-                            <th>BattleEye</th>
+                            <th className={styles.worldslist__table__thead__tr__th}>BattleEye</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className={styles.worldslist__table__tbody}>
                         {filteredWorlds.length > 0 ? filteredWorlds.map(world => (
-                            <tr key={world.name}>
-                                <td>
+                            <tr key={world.name} className={styles.worldslist__table__tbody__tr}>
+                                <td className={styles.worldslist__table__tbody__tr__td}>
                                     <Link to={world.name}>
                                         {world.name}
                                     </Link>
                                 </td>
-                                <td>{world.players_online}</td>
-                                <td>{
+                                <td className={styles.worldslist__table__tbody__tr__td}>{world.players_online}</td>
+                                <td className={styles.worldslist__table__tbody__tr__td}>{
                                     world.location === 'Europe' ? (
                                         <div className={styles.flags}>
                                             <p>{world.location}</p>
@@ -101,9 +101,9 @@ export default function WorldsList({ worlds }) {
                                     ) : null
                                 }
                                 </td>
-                                <td>{world.pvp_type}</td>
-                                <td>{world.transfer_type}</td>
-                                <td>
+                                <td className={styles.worldslist__table__tbody__tr__td}>{world.pvp_type}</td>
+                                <td className={styles.worldslist__table__tbody__tr__td}>{world.transfer_type}</td>
+                                <td className={styles.worldslist__table__tbody__tr__td}>
                                     {
                                         world.battleye_date === "release" ? (
                                             <img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Yellow BattlEye item' />

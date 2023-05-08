@@ -1,4 +1,5 @@
 import MainTitle from 'components/MainTitle';
+import styles from './World.module.scss';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Moment from 'react-moment';
@@ -34,47 +35,47 @@ export default function World() {
             <MainTitle title={world} />
 
             <div>
-                <table>
-                    <tbody>
+                <table className={styles.world__table}>
+                    <tbody className={styles.world__table__tbody}>
 
-                        <tr>
-                            <td>Status:</td>
-                            <td>{worldInfo.status}</td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>Status:</td>
+                            <td className={styles.world__table__tbody__tr__td}>{worldInfo.status}</td>
                         </tr>
-                        <tr>
-                            <td>Players Online:</td>
-                            <td>{worldInfo.players_online}</td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>Players Online:</td>
+                            <td className={styles.world__table__tbody__tr__td}>{worldInfo.players_online}</td>
                         </tr>
-                        <tr>
-                            <td>Online Record:</td>
-                            <td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>Online Record:</td>
+                            <td className={styles.world__table__tbody__tr__td}>
                                 {`${worldInfo.record_players} players on `}
                                 {formatDate(worldInfo.record_date, "MMMM D YYYY, HH:mm:ss z")}
                             </td>
                         </tr>
-                        <tr>
-                            <td>Creation Date:</td>
-                            <td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>Creation Date:</td>
+                            <td className={styles.world__table__tbody__tr__td}>
                                 {formatDate(worldInfo.creation_date, "MMMM YYYY")}
                             </td>
                         </tr>
-                        <tr>
-                            <td>Location:</td>
-                            <td>{worldInfo.location}</td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>Location:</td>
+                            <td className={styles.world__table__tbody__tr__td}>{worldInfo.location}</td>
                         </tr>
-                        <tr>
-                            <td>PvP Type:</td>
-                            <td>{worldInfo.pvp_type}</td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>PvP Type:</td>
+                            <td className={styles.world__table__tbody__tr__td}>{worldInfo.pvp_type}</td>
                         </tr>
-                        <tr>
-                            <td>World Quest Titles:</td>
-                            <td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>World Quest Titles:</td>
+                            <td className={styles.world__table__tbody__tr__td}>
                                 {worldInfo && worldInfo.world_quest_titles && worldInfo.world_quest_titles.join(', ')}
                             </td>
                         </tr>
-                        <tr>
-                            <td>BattlEye Status:</td>
-                            <td>{
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>BattlEye Status:</td>
+                            <td className={styles.world__table__tbody__tr__td}>{
                                 worldInfo.battleye_protected === true && worldInfo.battleye_date !== "release" ?
                                     (<>
                                         Protected by BattlEye since {" "}
@@ -86,9 +87,9 @@ export default function World() {
                             }
                             </td>
                         </tr>
-                        <tr>
-                            <td>Game World Type:</td>
-                            <td>{worldInfo.game_world_type}</td>
+                        <tr className={styles.world__table__tbody__tr}>
+                            <td className={styles.world__table__tbody__tr__td}>Game World Type:</td>
+                            <td className={styles.world__table__tbody__tr__td}>{worldInfo.game_world_type}</td>
                         </tr>
                     </tbody>
                 </table>
