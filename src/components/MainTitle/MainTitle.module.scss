@@ -1,11 +1,17 @@
 @import "../../styles/variables";
 
-.main__title {
-    color: $secundary-color;
+
+.main__title__container {
     background-color: $background-color-form;
-    font-size: 22px;
-    padding: 0.5em;
-    width: 100%;
-    box-sizing: border-box;
     border-radius: 20px 20px 0 0;
-} 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    .main__title {
+        color: $secundary-color;
+        font-size: 22px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}

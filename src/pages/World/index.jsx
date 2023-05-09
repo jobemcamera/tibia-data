@@ -1,9 +1,10 @@
 import MainTitle from 'components/MainTitle';
 import styles from './World.module.scss';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import Button from 'components/Button';
 
 
 export function formatDate(date, style) {
@@ -30,9 +31,18 @@ export default function World() {
 
     }, [world]);
 
+    const back = useNavigate();
+
+    function backPage() {
+        return back(-1);
+    }
+
+
     return (
         <section>
-            <MainTitle title={world} />
+            <MainTitle title={world} >
+                <Button title="Back" action={backPage}/>
+            </MainTitle>
 
             <div>
                 <table className={styles.world__table}>

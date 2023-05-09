@@ -7,7 +7,7 @@ export default function FieldSearch( {name} ) {
         <div className={styles.field__container}>
             <label>{name}</label>
             <input type="text" />
-            <Button />
+            <Button title="Submit"/>
         </div>
     )
 }
