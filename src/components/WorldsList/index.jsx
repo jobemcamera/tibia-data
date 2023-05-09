@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './WorldsList.module.scss'
 import { Link } from 'react-router-dom'
+import SelectFilter from 'components/SelectFilter';
 
 export default function WorldsList({ worlds }) {
 
@@ -26,6 +27,12 @@ export default function WorldsList({ worlds }) {
         return isLocationMatched && isPvpTypeMatched && isTransferTypeMatched
     });
 
+    const options = {
+        location: ["", "Europe", "South America", "North America"],
+        pvp_type: ["", "Open PvP", "Optional PvP", "Hardcore PvP", "Retro Open PvP", "Retro Hardcore PvP"],
+        transfer_type: ["", "regular", "blocked", "locked"]
+    }
+
 
     return (
         <>
@@ -38,36 +45,40 @@ export default function WorldsList({ worlds }) {
                             <th className={styles.worldslist__table__thead__tr__th}>
                                 <div className={styles.worldslist__options__container}>
                                     <span>Location </span>
-                                    <select name="location" value={filters.location} onChange={handleFilterChange}>
-                                        <option value="">All</option>
-                                        <option value="Europe">Europe</option>
-                                        <option value="South America">South America</option>
-                                        <option value="North America">North America</option>
-                                    </select>
+                                    <SelectFilter
+                                        filters={filters}
+                                        handleFilterChange={handleFilterChange}
+                                        options={options.location} 
+                                        info="location"
+                                    />
                                 </div>
                             </th>
                             <th className={styles.worldslist__table__thead__tr__th}>
                                 <div className={styles.worldslist__options__container}>
                                     <span>PvP Type </span>
-                                    <select name="pvp_type" value={filters.pvp_type} onChange={handleFilterChange}>
-                                        <option value="">All</option>
-                                        <option value="Open PvP">Open PvP</option>
-                                        <option value="Optional PvP">Optional PvP</option>
-                                        <option value="Hardcore PvP">Hardcore PvP</option>
-                                        <option value="Retro Open PvP">Retro Open PvP</option>
-                                        <option value="Retro Hardcore PvP">Retro Hardcore PvP</option>
-                                    </select>
+                                    <SelectFilter 
+                                        filters={filters}
+                                        handleFilterChange={handleFilterChange}
+                                        options={options.pvp_type}
+                                        info="pvp_type"
+                                    />
                                 </div>
                             </th>
                             <th className={styles.worldslist__table__thead__tr__th}>
                                 <div className={styles.worldslist__options__container}>
                                     <span>Transfer Type </span>
-                                    <select name="transfer_type" value={filters.transfer_type} onChange={handleFilterChange}>
+                                    <SelectFilter 
+                                        filters={filters}
+                                        handleFilterChange={handleFilterChange}
+                                        options={options.transfer_type}
+                                        info="transfer_type"
+                                    />
+                                    {/* <select name="transfer_type" value={filters.transfer_type} onChange={handleFilterChange}>
                                         <option value="">All</option>
                                         <option value="regular">Regular</option>
                                         <option value="blocked">Blocked</option>
                                         <option value="locked">Locked</option>
-                                    </select>
+                                    </select> */}
                                 </div>
                             </th>
                             <th className={styles.worldslist__table__thead__tr__th}>BattleEye</th>
@@ -119,7 +130,7 @@ export default function WorldsList({ worlds }) {
                             <tr>
                                 <td colSpan={6} className={styles.not__found}>Not found</td>
                             </tr>
-                            )
+                        )
                         }
                     </tbody>
                 </table>
