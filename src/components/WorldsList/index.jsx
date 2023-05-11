@@ -73,12 +73,6 @@ export default function WorldsList({ worlds }) {
                                         options={options.transfer_type}
                                         info="transfer_type"
                                     />
-                                    {/* <select name="transfer_type" value={filters.transfer_type} onChange={handleFilterChange}>
-                                        <option value="">All</option>
-                                        <option value="regular">Regular</option>
-                                        <option value="blocked">Blocked</option>
-                                        <option value="locked">Locked</option>
-                                    </select> */}
                                 </div>
                             </th>
                             <th className={styles.worldslist__table__thead__tr__th}>BattleEye</th>
@@ -127,7 +121,7 @@ export default function WorldsList({ worlds }) {
                                 </td>
                             </tr>
                         )) : (
-                            <tr>
+                            <tr className={styles.worldslist__table__tbody__tr}>
                                 <td colSpan={6} className={styles.not__found}>Not found</td>
                             </tr>
                         )
