@@ -23,16 +23,62 @@ export default function WorldsList({ worlds }) {
         const isLocationMatched = filters.location === '' || filters.location === world.location;
         const isPvpTypeMatched = filters.pvp_type === '' || filters.pvp_type === world.pvp_type;
         const isTransferTypeMatched = filters.transfer_type === '' || filters.transfer_type === world.transfer_type;
+        const isBattleyeDataMatched = filters.battleye_date === '' || filters.battleye_date === world.battleye_date;
 
-        return isLocationMatched && isPvpTypeMatched && isTransferTypeMatched
+        return isLocationMatched && isPvpTypeMatched && isTransferTypeMatched && isBattleyeDataMatched;
     });
 
     const options = {
         location: ["", "Europe", "South America", "North America"],
         pvp_type: ["", "Open PvP", "Optional PvP", "Hardcore PvP", "Retro Open PvP", "Retro Hardcore PvP"],
-        transfer_type: ["", "regular", "blocked", "locked"]
+        transfer_type: ["", "regular", "blocked", "locked"],
+        battleye_date: ["", "release"] // Tenho que arrumar essa parte depois para Green / Yellow / Not
     }
 
+    // Function to show the world's location + location's flag (Europe = UK, South America = Brazil, North America = USA)
+    function worldLocation(location) {
+        if (location === 'Europe') {
+            return (
+                <div className={styles.flags}>
+                    <p>{location}</p>
+                    <img src="https://www.bandeirasnacionais.com/data/flags/w580/gb.webp" alt="The flag of The United Kingdom" />
+                </div>
+            );
+        } else if (location === 'South America') {
+            return (
+                <div className={styles.flags}>
+                    <p>{location}</p>
+                    <img src="https://www.bandeirasnacionais.com/data/flags/w580/br.webp" alt="The flag of Brazil" />
+                </div>
+            );
+        } else if (location === 'North America') {
+            return (
+                <div className={styles.flags}>
+                    <p>{location}</p>
+                    <img src="https://www.bandeirasnacionais.com/data/flags/w580/us.webp" alt='The flag of The United States of America' />
+                </div>
+            );
+        } else {
+            return null;
+        }
+    }
+
+    // Function to show the BattlEye type (green, yellow or nothing)
+    function battleyeType(date) {
+        if (date === "release") {
+            return (
+                <img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Yellow BattlEye icon' />
+            );
+        } else if (date === "") {
+            return (
+                <p></p>
+            );
+        } else {
+            return (
+                <img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Green BattlEye icon' />
+            );
+        }
+    }
 
     return (
         <>
@@ -48,7 +94,7 @@ export default function WorldsList({ worlds }) {
                                     <SelectFilter
                                         filters={filters}
                                         handleFilterChange={handleFilterChange}
-                                        options={options.location} 
+                                        options={options.location}
                                         info="location"
                                     />
                                 </div>
@@ -56,7 +102,7 @@ export default function WorldsList({ worlds }) {
                             <th className={styles.worldslist__table__thead__tr__th}>
                                 <div className={styles.worldslist__options__container}>
                                     <span>PvP Type </span>
-                                    <SelectFilter 
+                                    <SelectFilter
                                         filters={filters}
                                         handleFilterChange={handleFilterChange}
                                         options={options.pvp_type}
@@ -67,7 +113,7 @@ export default function WorldsList({ worlds }) {
                             <th className={styles.worldslist__table__thead__tr__th}>
                                 <div className={styles.worldslist__options__container}>
                                     <span>Transfer Type </span>
-                                    <SelectFilter 
+                                    <SelectFilter
                                         filters={filters}
                                         handleFilterChange={handleFilterChange}
                                         options={options.transfer_type}
@@ -75,7 +121,17 @@ export default function WorldsList({ worlds }) {
                                     />
                                 </div>
                             </th>
-                            <th className={styles.worldslist__table__thead__tr__th}>BattleEye</th>
+                            <th className={styles.worldslist__table__thead__tr__th}>
+                                <div className={styles.worldslist__options__container}>
+                                    <span>BattlEye </span>
+                                    <SelectFilter
+                                        filters={filters}
+                                        handleFilterChange={handleFilterChange}
+                                        options={options.battleye_date}
+                                        info="battleye_date"
+                                    />
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody className={styles.worldslist__table__tbody}>
@@ -87,38 +143,10 @@ export default function WorldsList({ worlds }) {
                                     </Link>
                                 </td>
                                 <td className={styles.worldslist__table__tbody__tr__td}>{world.players_online}</td>
-                                <td className={styles.worldslist__table__tbody__tr__td}>{
-                                    world.location === 'Europe' ? (
-                                        <div className={styles.flags}>
-                                            <p>{world.location}</p>
-                                            <img src="https://www.bandeirasnacionais.com/data/flags/w580/gb.webp" alt="The flag of The United Kingdom" />
-                                        </div>
-                                    ) : world.location === 'South America' ? (
-                                        <div className={styles.flags}>
-                                            <p>{world.location}</p>
-                                            <img src="https://www.bandeirasnacionais.com/data/flags/w580/br.webp" alt="The flag of Brazil" />
-                                        </div>
-                                    ) : world.location === 'North America' ? (
-                                        <div className={styles.flags}>
-                                            <p>{world.location}</p>
-                                            <img src="https://www.bandeirasnacionais.com/data/flags/w580/us.webp" alt='The flag of The United States of America' />
-                                        </div>
-                                    ) : null
-                                }
-                                </td>
+                                <td className={styles.worldslist__table__tbody__tr__td}>{worldLocation(world.location)}</td>
                                 <td className={styles.worldslist__table__tbody__tr__td}>{world.pvp_type}</td>
                                 <td className={styles.worldslist__table__tbody__tr__td}>{world.transfer_type}</td>
-                                <td className={styles.worldslist__table__tbody__tr__td}>
-                                    {
-                                        world.battleye_date === "release" ? (
-                                            <img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Yellow BattlEye item' />
-                                        ) : world.battleye_date === "" ? (
-                                            <p></p>
-                                        ) : (
-                                            <img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Green BattlEye item' />
-                                        )
-                                    }
-                                </td>
+                                <td className={styles.worldslist__table__tbody__tr__td}>{battleyeType(world.battleye_date)}</td>
                             </tr>
                         )) : (
                             <tr className={styles.worldslist__table__tbody__tr}>
