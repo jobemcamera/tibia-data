@@ -33,7 +33,7 @@ export default function WorldsList({ worlds }) {
         location: ["", "Europe", "South America", "North America"],
         pvp_type: ["", "Open PvP", "Optional PvP", "Hardcore PvP", "Retro Open PvP", "Retro Hardcore PvP"],
         transfer_type: ["", "regular", "blocked", "locked"],
-        battleye_date: ["", "date", "release"] // Tenho que arrumar essa parte depois para Green / Yellow / Not
+        battleye_date: ["", "date", "release"] // Tenho que arrumar essa parte depois para Green / Yellow / Not Protected
     }
 
     // Function to show the world's location + location's flag (Europe = UK, South America = Brazil, North America = USA)
