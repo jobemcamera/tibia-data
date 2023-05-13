@@ -9,6 +9,7 @@ export default function WorldsList({ worlds }) {
         location: '',
         pvp_type: '',
         transfer_type: '',
+        battleye_date: ''
     });
 
     const handleFilterChange = (event) => {
@@ -32,7 +33,7 @@ export default function WorldsList({ worlds }) {
         location: ["", "Europe", "South America", "North America"],
         pvp_type: ["", "Open PvP", "Optional PvP", "Hardcore PvP", "Retro Open PvP", "Retro Hardcore PvP"],
         transfer_type: ["", "regular", "blocked", "locked"],
-        battleye_date: ["", "release"] // Tenho que arrumar essa parte depois para Green / Yellow / Not
+        battleye_date: ["", "date", "release"] // Tenho que arrumar essa parte depois para Green / Yellow / Not
     }
 
     // Function to show the world's location + location's flag (Europe = UK, South America = Brazil, North America = USA)
@@ -67,7 +68,7 @@ export default function WorldsList({ worlds }) {
     function battleyeType(date) {
         if (date === "release") {
             return (
-                <img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Yellow BattlEye icon' />
+                <img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Green BattlEye icon' />
             );
         } else if (date === "") {
             return (
@@ -75,7 +76,7 @@ export default function WorldsList({ worlds }) {
             );
         } else {
             return (
-                <img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Green BattlEye icon' />
+                <img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Yellow BattlEye icon' />
             );
         }
     }
