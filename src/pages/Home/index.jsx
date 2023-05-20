@@ -1,14 +1,9 @@
 import React from 'react'
 import styles from './Home.module.scss'
 import MainTitle from 'components/MainTitle'
+import { openNewTab } from 'components/SharedFunctions'
 
 export default function Home() {
-
-    const openNewTab = (link) => {
-        return () => {
-            window.open(link, '_blank')
-        }
-    }
 
     return (
         <div className={styles.home}>

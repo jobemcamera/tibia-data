@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Records.module.scss'
 import MainTitle from 'components/MainTitle'
-import { formatDate } from 'pages/World'
+import { formatDate } from 'components/SharedFunctions';
 
 function formatDigit(digit) {
     if (typeof digit === 'number') {

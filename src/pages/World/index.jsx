@@ -2,18 +2,8 @@ import MainTitle from 'components/MainTitle';
 import styles from './World.module.scss';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Moment from 'react-moment';
-import 'moment-timezone';
 import Button from 'components/Button';
-
-
-export function formatDate(date, style) {
-    return (
-        <Moment format={style} tz="Europe/Paris">
-            {date}
-        </Moment>
-    )
-}
+import { formatDate } from 'components/SharedFunctions';
 
 export default function World() {
     const { world } = useParams();
