@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import { Link } from 'react-router-dom';
+import { openNewTab } from 'components/SharedFunctions';
 
 export default function Footer() {
     return (
         <footer className={styles}>
             <section>
-                <p>Created by <Link to={'https://github.com/jobemcamera'}>Jobe Camera</Link></p>
+                <p>Created by <span className={styles.footer__link} onClick={openNewTab('https://github.com/jobemcamera')}>Jobe Camera</span></p>
                 <p>Tibia is copyrighted by
                     CipSoft GmbH.
                     The official website for Tibia is 
-                    <Link to={'https://www.tibia.com/mmorpg/free-multiplayer-online-role-playing-game.php'}> Tibia.com</Link>
+                    <span className={styles.footer__link} onClick={openNewTab('https://www.tibia.com/mmorpg/free-multiplayer-online-role-playing-game.php')}> Tibia.com</span>
                 </p>
             </section>
         </footer>
