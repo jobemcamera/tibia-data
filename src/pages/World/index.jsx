@@ -37,11 +37,10 @@ export default function World() {
         return back(-1);
     }
 
-
     return (
         <section>
             <MainTitle title={world} >
-                <Button title="Back" action={backPage}/>
+                <Button title="Back" action={backPage} />
             </MainTitle>
 
             <div>
@@ -80,7 +79,7 @@ export default function World() {
                         <tr className={styles.world__table__tbody__tr}>
                             <td className={styles.world__table__tbody__tr__td}>World Quest Titles:</td>
                             <td className={styles.world__table__tbody__tr__td}>
-                                {worldInfo && worldInfo.world_quest_titles && worldInfo.world_quest_titles.join(', ')}
+                                {worldInfo && worldInfo.world_quest_titles && worldInfo.world_quest_titles.length > 0 ? worldInfo.world_quest_titles.join(', ') : "N/A"}
                             </td>
                         </tr>
                         <tr className={styles.world__table__tbody__tr}>
