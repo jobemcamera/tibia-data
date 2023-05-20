@@ -17,14 +17,15 @@
         padding: 1em;
         p {
             line-height: 25px;
-            a {
+            .home__link {
                 text-decoration: none;
-                    color: $link-color;
-                    font-weight: 700;
-                    a:visited {
-                        color: none;
-                        text-decoration: none;
-                    }
+                color: $link-color;
+                font-weight: 700;
+                cursor: pointer;
+                &:visited {
+                    color: none;
+                    text-decoration: none;
+                }
             }
         }
     }
