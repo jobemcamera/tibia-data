@@ -3,31 +3,30 @@ import Form from 'components/Form';
 import React, { useState } from 'react';
 
 export default function Characters() {
-  const [character, setCharacter] = useState('');
+  const [character, setCharacter] = useState(null);
 
-  const searchCharacterHandler = (enteredCharacter) => {
+  const searchCharacterHandler = async (enteredCharacter) => {
     if (enteredCharacter.trim().length === 0) {
       console.log('vazio');
       return;
     }
 
     const formattedName = enteredCharacter.replace(/ /g, '%20');
-
-    fetch(`https://api.tibiadata.com/v3/character/${formattedName}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCharacter(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const response = await fetch(`https://api.tibiadata.com/v3/character/${formattedName}`);
+      const data = await response.json();
+      const characterData = data.characters.character;
+      console.log(characterData);
+      setCharacter(characterData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <>
       <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
-      <Character character={character} />
+      {character && Object.keys(character).length > 0 && <Character character={character} />}
     </>
   );
 }
