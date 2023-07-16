@@ -8,11 +8,23 @@ export default function CharacterAchievements({ character }) {
     const achievements = character || [];
     return achievements.map((achievement, index) => (
       <tr key={index}>
-        <td>{achievement.grade}</td>
+        <td>
+          {Array.from({ length: achievement.grade }, (_, i) => (
+            <img
+              key={i}
+              className={styles.grade}
+              src="https://static.tibia.com/images/global/general/achievement-grade-symbol.gif"
+              alt="Achievement Grade Symbol"
+            />
+          ))}
+        </td>
         <td>
           {achievement.name}
           {achievement.secret ?
-            <img className={styles.secret} src="https://static.tibia.com/images/global/general/achievement-secret-symbol.gif" alt="Secret" /> :
+            <img 
+              className={styles.secret} 
+              src="https://static.tibia.com/images/global/general/achievement-secret-symbol.gif" 
+              alt="Achievement Secret Symbol" /> :
             ''}
         </td>
       </tr>
