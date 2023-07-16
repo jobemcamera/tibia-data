@@ -15,7 +15,7 @@ export default function Characters() {
     try {
       const response = await fetch(`https://api.tibiadata.com/v3/character/${formattedName}`);
       const data = await response.json();
-      const characterData = data.characters.character;
+      const characterData = data.characters;
       console.log(characterData);
       setCharacter(characterData);
     } catch (error) {
@@ -25,8 +25,8 @@ export default function Characters() {
 
   return (
     <>
-      <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
       {character && Object.keys(character).length > 0 && <Character character={character} />}
+      <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
     </>
   );
 }
