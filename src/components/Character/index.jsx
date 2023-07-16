@@ -1,10 +1,10 @@
-import CharacterTable from "components/CharacterTable";
+import CharacterInformation from "components/CharacterInformation";
 import React from "react";
 
 export default function Character({ character }) {
   return (
     <>
-      <CharacterTable character={character} />
+      <CharacterInformation character={character} />
     </>
   )
 }

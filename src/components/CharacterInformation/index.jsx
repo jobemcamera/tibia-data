@@ -1,9 +1,9 @@
 import React from 'react';
 import { formatDate } from 'components/SharedFunctions';
-import styles from './CharacterTable.module.scss';
+import styles from './CharacterInformation.module.scss';
 import MainTitle from 'components/MainTitle';
 
-function CharacterTable({ character }) {
+function CharacterInformation({ character }) {
   const renderCharacterInfo = () => {
     const characterInfo = [
       { label: 'Name', value: character.name },
@@ -75,4 +75,4 @@ function CharacterTable({ character }) {
   );
 }
 
-export default CharacterTable;
+export default CharacterInformation;
