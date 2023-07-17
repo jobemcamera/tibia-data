@@ -1,8 +1,8 @@
 @import "../../styles/variables";
 
 .container {
-  margin: 1rem 0;
-
+  margin-bottom: 1rem;
+  
   table {
     max-width: 100%;
     width: 100%;
@@ -21,6 +21,7 @@
       &:last-child td:first-child {
         border-radius: 0 0 0 15px;
       }
+
       &:last-child td:last-child {
         border-radius: 0 0 15px 0;
       }
