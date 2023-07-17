@@ -17,22 +17,23 @@ function CharacterInformation({ character }) {
       character.married_to && { label: 'Married To', value: character.married_to },
       {
         label: 'Houses',
-        value: character.houses.map((house) => (
+        value: character.houses ? character.houses.map((house) => (
           <div key={house.houseid}>
             <div>{house.name} ({house.town}) is paid until {formatDate(house.paid, 'MMM DD YYYY')}</div>
           </div>
-        )),
+        )) : null,
       },
       {
         label: 'Guild Membership',
-        value: `${character.guild.rank} of the ${character.guild.name}`,
-      },
+        value: Object.keys(character.guild).length > 0 ? `${character.guild.rank} of the ${character.guild.name}` : null,
+      },      
       {
         label: 'Last Login',
         value: formatDate(character.last_login, 'MMM DD YYYY, HH:mm:ss z'),
       },
       {
-        label: 'Comment', value: (
+        label: 'Comment',
+        value: character.comment ? (
           <div>
             {character.comment.split('\n').map((line, index) => (
               <div key={index}>
@@ -41,14 +42,14 @@ function CharacterInformation({ character }) {
               </div>
             ))}
           </div>
-        )
+        ) : null,
       },
       { label: 'Account Status', value: character.account_status },
     ];
 
 
     return characterInfo.map((info) => {
-      if (!info) {
+      if (!info || info.value === null) {
         return null;
       }
 

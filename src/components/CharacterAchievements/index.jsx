@@ -6,6 +6,7 @@ export default function CharacterAchievements({ character }) {
 
   const renderCharacterInfo = () => {
     const achievements = character || [];
+
     return achievements.map((achievement, index) => (
       <tr key={index}>
         <td>
@@ -21,9 +22,9 @@ export default function CharacterAchievements({ character }) {
         <td>
           {achievement.name}
           {achievement.secret ?
-            <img 
-              className={styles.secret} 
-              src="https://static.tibia.com/images/global/general/achievement-secret-symbol.gif" 
+            <img
+              className={styles.secret}
+              src="https://static.tibia.com/images/global/general/achievement-secret-symbol.gif"
               alt="Achievement Secret Symbol" /> :
             ''}
         </td>
@@ -37,7 +38,11 @@ export default function CharacterAchievements({ character }) {
         <MainTitle title="Account Achievements" />
         <table>
           <tbody>
-            {character && renderCharacterInfo()}
+            {character ? renderCharacterInfo() : (
+              <tr>
+                <td colSpan="2" style={{ fontWeight: 'normal' }}>There are no achievements set to be displayed for this character.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </section>
