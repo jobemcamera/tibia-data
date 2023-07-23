@@ -24,8 +24,8 @@ export default function Form({ name, validField, onSearchCharacter }) {
       <MainTitle title={name} />
       <form onSubmit={sendForm}>
         <div className={styles.field__container}>
-          <label className={styles.field__container__label}>{name}</label>
-          <input type="text" ref={characterInputRef} className={inputStyle} />
+          <label className={styles.field__container__label}>Character Name</label>
+          <input type="text" ref={characterInputRef} className={inputStyle} placeholder="Enter the character name"/>
           <Button title="Submit" action={handleSubmit} />
         </div>
       </form>
