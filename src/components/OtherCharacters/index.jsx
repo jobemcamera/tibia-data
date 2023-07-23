@@ -1,8 +1,13 @@
 import React from 'react';
 import MainTitle from 'components/MainTitle';
 import styles from './OtherCharacters.module.scss';
+import Button from 'components/Button';
 
 export default function OtherCharacters({ character }) {
+  const viwOtherCharacters = (event) => {
+    event.preventDefault();
+  }
+
   const renderCharacterInfo = () => {
     if (!character || character.length === 0) {
       return null;
@@ -15,7 +20,7 @@ export default function OtherCharacters({ character }) {
         <td className={styles.status}>
           {info.status == 'online' ? 'online' : ''}
         </td>
-        <td><button>View</button></td>
+        <td><Button title='View' action={viwOtherCharacters}/></td>
       </tr>
     ));
   }
@@ -60,6 +65,7 @@ const formatCharacterInfo = (character) => {
     { label: 'Name', value: character.name },
     { label: 'World', value: character.world },
     { label: 'Status', value: character.status },
+    { label: '' }
   ];
 
   return characterInfo;

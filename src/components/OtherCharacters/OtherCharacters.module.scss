@@ -46,6 +46,10 @@
 
       td {
         padding: 0.3rem 0.5rem;
+
+        &:last-child {
+          text-align: center;
+        }
       }
 
       .status {
