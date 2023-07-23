@@ -12,7 +12,9 @@ export default function OtherCharacters({ character }) {
       <tr key={info.name}>
         <td>{info.name}</td>
         <td>{info.world}</td>
-        <td>{info.status}</td>
+        <td className={styles.status}>
+          {info.status == 'online' ? 'online' : ''}
+        </td>
         <td><button>View</button></td>
       </tr>
     ));

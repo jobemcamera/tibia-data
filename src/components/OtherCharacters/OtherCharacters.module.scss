@@ -13,8 +13,26 @@
     border-radius: 0 0 15px 15px;
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
 
+    th {
+      background-color: $background-color-content;
+      padding: 0.3rem 0.5rem;
+      text-align: left;
+
+      &:first-child {
+        width: 20%;
+      }
+
+      &:nth-child(2) {
+        width: 10%;
+      }
+
+      &:nth-child(3) {
+        width: 50%;
+      }
+    }
+
     tr {
-      &:nth-child(odd) {
+      &:nth-child(even) {
         background-color: $background-color-content;
       }
 
@@ -24,6 +42,15 @@
 
       &:last-child td:last-child {
         border-radius: 0 0 15px 0;
+      }
+
+      td {
+        padding: 0.3rem 0.5rem;
+      }
+
+      .status {
+        color: $status-color;
+        font-weight: bold;
       }
     }
   }
