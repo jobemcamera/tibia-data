@@ -9,7 +9,8 @@ import Characters from "pages/Characters";
 import Worlds from "pages/Worlds";
 import World from "pages/World";
 import Footer from "components/Footer";
-import Character from "components/Character";
+import Character from "components/Characters/Character";
+
 
 function AppRoutes() {
 	return (
