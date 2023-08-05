@@ -12,7 +12,7 @@ export default function Character() {
   const { characterName } = useParams();
   const [characterData, setCharacterData] = useState(null);
   const [showLoading, setShowLoading] = useState(false);
-  const [enteredCharacterName, setEnteredCharacterName] = useState('');
+  const [enteredCharacterName, setEnteredCharacterName] = useState(characterName);
   const navigate = useNavigate();
 
   const fetchCharacterData = async (name) => {
@@ -25,10 +25,8 @@ export default function Character() {
       const characterData = data.characters;
 
       if (characterData.character && characterData.character.name.trim() !== "") {
-        setEnteredCharacterName(characterName);
         setCharacterData(characterData);
       } else {
-        setEnteredCharacterName(characterName);
         setCharacterData(null);
       }
     } catch (error) {
@@ -59,10 +57,8 @@ export default function Character() {
       const characterData = data.characters;
 
       if (characterData.character && characterData.character.name.trim() !== "") {
-        setEnteredCharacterName(enteredCharacter);
         setCharacterData(characterData);
       } else {
-        setEnteredCharacterName(enteredCharacter);
         setCharacterData(null);
       }
 
@@ -74,6 +70,7 @@ export default function Character() {
     }
 
     setShowLoading(false);
+    setEnteredCharacterName(enteredCharacter); 
   };
 
   const isLoading = showLoading;
