@@ -1,14 +1,15 @@
-import Character from 'components/Character';
-import Form from 'components/Form';
 import React, { useState } from 'react';
 import Loading from 'components/Loading';
 import CharacterNotFound from 'components/CharacterNotFound';
+import { useNavigate } from 'react-router-dom';
+import Form from 'components/Form';
 
 export default function Characters() {
   const [character, setCharacter] = useState(null);
   const [characterName, setCharacterName] = useState('');
   const [loading, setLoading] = useState(false);
   const [characterNotFound, setCharacterNotFound] = useState(false);
+  const navigate = useNavigate();
 
   const searchCharacterHandler = async (enteredCharacter) => {
     setLoading(true);
@@ -26,6 +27,7 @@ export default function Characters() {
       const characterData = data.characters;
       if (characterData.character && characterData.character.name.trim() !== '') {
         setCharacter(characterData);
+        navigate(`/characters/${encodeURIComponent(enteredCharacter.replace(/\s/g, '+'))}`);
       } else {
         setCharacterName(enteredCharacter);
         setCharacterNotFound(true);
@@ -42,12 +44,9 @@ export default function Characters() {
 
   return (
     <>
-      {character && Object.keys(character).length > 0 && !loading && (
-        <Character character={character} />
-      )}
       {characterNotFound && !loading && <CharacterNotFound character={characterName} />}
       {loading && <Loading />} 
-      <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
+      <Form name="Search Character" validField={characterNotFound} onSearchCharacter={searchCharacterHandler} />
     </>
   );
 }
