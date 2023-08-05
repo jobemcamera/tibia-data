@@ -17,9 +17,9 @@ export default function Character() {
 
   const fetchCharacterData = async (name) => {
     setShowLoading(true);
+    const formattedName = name.replace(/\+/g, " ");
 
     try {
-      const formattedName = name.replace(/\+/g, " ");
       const response = await fetch(`https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`);
       const data = await response.json();
       const characterData = data.characters;
@@ -33,6 +33,7 @@ export default function Character() {
       setCharacterData(null);
     }
 
+    setEnteredCharacterName(formattedName); 
     setShowLoading(false);
   };
 

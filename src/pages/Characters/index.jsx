@@ -6,7 +6,7 @@ export default function Characters() {
   const navigate = useNavigate();
 
   const searchCharacterHandler = (enteredCharacter) => {
-    const formattedNameForURL = enteredCharacter.replace(' ', '+');
+    const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
     navigate(`/characters/${formattedNameForURL}`);
   }
 
