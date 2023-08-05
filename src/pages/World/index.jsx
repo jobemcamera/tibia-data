@@ -15,7 +15,6 @@ export default function World() {
         const response = await fetch(`https://api.tibiadata.com/v3/world/${world}`);
         const jsonData = await response.json();
         setWorldInfo(jsonData.worlds.world);
-        console.log(jsonData.worlds.world)
       } catch (error) {
         console.error("Error fetching world info:", error);
       }
@@ -37,7 +36,7 @@ export default function World() {
     {
       label: "Online Record",
       value: worldInfo.record_players
-        ? `${worldInfo.record_players} players on ${formatDate(worldInfo.record_date, "MMMM D YYYY, HH:mm:ss z")}` 
+        ? `${worldInfo.record_players} players on ${formatDate(worldInfo.record_date, "MMMM D YYYY, HH:mm:ss z")}`
         : null,
     },
     {
@@ -68,16 +67,16 @@ export default function World() {
       <MainTitle title={world}>
         <Button title="Back" action={backPage} />
       </MainTitle>
-        <table>
-          <tbody>
-            {tableData.map((item, index) => (
-              <tr key={index}>
-                <td>{item.label}:</td>
-                <td>{item.value || "N/A"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <table>
+        <tbody>
+          {tableData.map((item, index) => (
+            <tr key={index}>
+              <td>{item.label}:</td>
+              <td>{item.value || "N/A"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </section>
   );
 }

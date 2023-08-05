@@ -4,7 +4,7 @@ import styles from './OtherCharacters.module.scss';
 import Button from 'components/Button';
 
 export default function OtherCharacters({ character }) {
-  const viwOtherCharacters = (event) => {
+  const viewOtherCharacters = (event) => {
     event.preventDefault();
   }
 
@@ -24,7 +24,7 @@ export default function OtherCharacters({ character }) {
         <td className={getStatusClass(info.status)}>
           {info.status == 'online' ? 'online' : 'offline'}
         </td>
-        <td><Button title='View' action={viwOtherCharacters} /></td>
+        <td><Button title='View' action={viewOtherCharacters} /></td>
       </tr>
     ));
   }
