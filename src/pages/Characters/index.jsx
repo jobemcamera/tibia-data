@@ -27,7 +27,8 @@ export default function Characters() {
       const characterData = data.characters;
       if (characterData.character && characterData.character.name.trim() !== '') {
         setCharacter(characterData);
-        navigate(`/characters/${encodeURIComponent(enteredCharacter.replace(/\s/g, '+'))}`);
+        const formattedNameForURL = enteredCharacter.replace(' ', '+');
+        navigate(`/characters/${encodeURIComponent(formattedName)}`);
       } else {
         setCharacterName(enteredCharacter);
         setCharacterNotFound(true);

@@ -15,6 +15,7 @@ export default function Character() {
   const [loading, setLoading] = useState(false);
   const [invalidData, setInvalidData] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [enteredCharacter, setEnteredCharacter] = useState(''); // Novo estado para o valor do campo de entrada
   const characterInputRef = useRef();
   const navigate = useNavigate();
 
@@ -24,7 +25,7 @@ export default function Character() {
       try {
         const formattedName = characterName.replace(/\+/g, " ");
         const response = await fetch(
-          `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName).replace(/%20/g, "+")}`
+          `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`
         );
         const data = await response.json();
         setCharacterData(data.characters);
@@ -42,22 +43,21 @@ export default function Character() {
   const searchCharacterHandler = async (enteredCharacter) => {
     setValidField(false);
     setSearched(true);
-
+  
     if (enteredCharacter.trim().length === 0) {
       return;
     }
-
-    const formattedNameForAPI = enteredCharacter.replace(/\s/g, '%20');
+  
+    const formattedNameForAPI = encodeURIComponent(enteredCharacter); 
     try {
       const response = await fetch(
-        `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedNameForAPI)}`
+        `https://api.tibiadata.com/v3/character/${formattedNameForAPI}`
       );
       const data = await response.json();
       const characterData = data.characters;
       if (characterData.character && characterData.character.name.trim() !== "") {
         setCharacterData(characterData);
-        const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
-        navigate(`/characters/${encodeURIComponent(formattedNameForURL)}`);
+        navigate(`/characters/${encodeURIComponent(enteredCharacter)}`);
         setInvalidData(false);
       } else {
         setValidField(true);
@@ -78,7 +78,7 @@ export default function Character() {
       ) : (
         <>
           {validField && !characterData && (
-            <CharacterNotFound character={characterInputRef.current?.value || characterName} />
+            <CharacterNotFound character={enteredCharacter} /> 
           )}
           {characterData && (
             <>
