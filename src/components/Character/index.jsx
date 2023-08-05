@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import CharacterNotFound from "components/CharacterNotFound";
 import CharacterAchievements from "components/CharacterAchievements";
@@ -11,79 +11,84 @@ import Loading from 'components/Loading';
 export default function Character() {
   const { characterName } = useParams();
   const [characterData, setCharacterData] = useState(null);
-  const [validField, setValidField] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [invalidData, setInvalidData] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [enteredCharacter, setEnteredCharacter] = useState('');
+  const [enteredCharacterName, setEnteredCharacterName] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchCharacterData = async () => {
-      setLoading(true);
-      try {
-        const formattedName = characterName.replace(/\+/g, " ");
-        const response = await fetch(
-          `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`
-        );
-        const data = await response.json();
-        setCharacterData(data.characters);
-        setInvalidData(false);
-      } catch (error) {
-        setCharacterData(null);
-        setInvalidData(true);
-      }
-      setLoading(false);
-    };
+  const fetchCharacterData = async (name) => {
+    setLoading(true);
 
-    fetchCharacterData();
+    try {
+      const formattedName = name.replace(/\+/g, " ");
+      const response = await fetch(
+        `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`
+      );
+      const data = await response.json();
+      const characterData = data.characters;
+
+      if (characterData.character && characterData.character.name.trim() !== "") {
+        setEnteredCharacterName(characterName)
+        setCharacterData(characterData);
+      } else {
+        setEnteredCharacterName(characterName)
+        setCharacterData(null);
+      }
+    } catch (error) {
+      setCharacterData(null);
+    }
+
+    setLoading(false);
+  };
+
+  // Fetch => URL
+  useEffect(() => {
+    fetchCharacterData(characterName);
   }, [characterName]);
 
+
+  // Fetch => Form
   const searchCharacterHandler = async (enteredCharacter) => {
-    setValidField(false);
     setSearched(true);
-  
+
     if (enteredCharacter.trim().length === 0) {
       return;
     }
-  
-    const formattedNameForAPI = encodeURIComponent(enteredCharacter); 
+
     try {
       const response = await fetch(
-        `https://api.tibiadata.com/v3/character/${formattedNameForAPI}`
+        `https://api.tibiadata.com/v3/character/${encodeURIComponent(enteredCharacter)}`
       );
       const data = await response.json();
       const characterData = data.characters;
       if (characterData.character && characterData.character.name.trim() !== "") {
-        setEnteredCharacter(enteredCharacter)
+        setEnteredCharacterName(enteredCharacter)
         setCharacterData(characterData);
         const formattedNameForURL = enteredCharacter.replace(' ', '+');
         navigate(`/characters/${formattedNameForURL}`);
-        setInvalidData(false);
         window.scrollTo(0, 0);
       } else {
-        setEnteredCharacter(enteredCharacter)
-        setValidField(true);
+        setEnteredCharacterName(enteredCharacter)
         setCharacterData(null);
-        setInvalidData(true);
       }
     } catch (error) {
-      setValidField(true);
       setCharacterData(null);
-      setInvalidData(true);
     }
   };
 
+  const isLoading = loading && !searched;
+  const isCharacterNotFound = !characterData;
+  const isCharacterDataAvailable = characterData;
+
   return (
     <>
-      {loading && !searched ? (
-        <Loading />
-      ) : (
+      {isLoading && <Loading />}
+      {!isLoading && (
         <>
-          {validField && !characterData && (
-            <CharacterNotFound character={enteredCharacter} /> 
+          {isCharacterNotFound && (
+            <CharacterNotFound character={enteredCharacterName} />
           )}
-          {characterData && (
+          {isCharacterDataAvailable && (
             <>
               <CharacterInformation character={characterData.character} />
               <CharacterAchievements character={characterData.achievements} />
