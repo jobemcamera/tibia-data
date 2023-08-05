@@ -15,8 +15,7 @@ export default function Character() {
   const [loading, setLoading] = useState(false);
   const [invalidData, setInvalidData] = useState(false);
   const [searched, setSearched] = useState(false);
-  const [enteredCharacter, setEnteredCharacter] = useState(''); // Novo estado para o valor do campo de entrada
-  const characterInputRef = useRef();
+  const [enteredCharacter, setEnteredCharacter] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,6 +58,7 @@ export default function Character() {
         setCharacterData(characterData);
         navigate(`/characters/${encodeURIComponent(enteredCharacter)}`);
         setInvalidData(false);
+        window.scrollTo(0, 0);
       } else {
         setValidField(true);
         setCharacterData(null);
