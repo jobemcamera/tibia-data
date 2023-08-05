@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import styles from "./Form.module.scss";
 import Button from "components/Button";
 
-export default function Form({ name, validField, onSearchCharacter }) {
+export default function Form({ name, onSearchCharacter }) {
   const characterInputRef = useRef();
 
   const handleSubmit = () => {
@@ -15,17 +15,13 @@ export default function Form({ name, validField, onSearchCharacter }) {
     event.preventDefault();
   }
 
-  const inputStyle = `${styles.field__container__input} ${
-    validField ? styles.invalid : ""
-  }`;
-
   return (
     <section className={styles.form__container}>
       <MainTitle title={name} />
       <form onSubmit={sendForm}>
         <div className={styles.field__container}>
           <label className={styles.field__container__label}>Character Name</label>
-          <input type="text" ref={characterInputRef} className={inputStyle} placeholder="Enter the character name"/>
+          <input type="text" ref={characterInputRef} className={styles.field__container__input} placeholder="Enter the character name"/>
           <Button title="Submit" action={handleSubmit} />
         </div>
       </form>
