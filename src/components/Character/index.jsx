@@ -56,7 +56,8 @@ export default function Character() {
       const characterData = data.characters;
       if (characterData.character && characterData.character.name.trim() !== "") {
         setCharacterData(characterData);
-        navigate(`/characters/${encodeURIComponent(enteredCharacter)}`);
+        const formattedNameForURL = enteredCharacter.replace(' ', '+');
+        navigate(`/characters/${formattedNameForURL}`);
         setInvalidData(false);
         window.scrollTo(0, 0);
       } else {

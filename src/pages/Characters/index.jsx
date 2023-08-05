@@ -20,7 +20,7 @@ export default function Characters() {
       return;
     }
 
-    const formattedName = enteredCharacter.replace(/ /g, '%20');
+    const formattedName = encodeURIComponent(enteredCharacter);
     try {
       const response = await fetch(`https://api.tibiadata.com/v3/character/${formattedName}`);
       const data = await response.json();
@@ -28,7 +28,7 @@ export default function Characters() {
       if (characterData.character && characterData.character.name.trim() !== '') {
         setCharacter(characterData);
         const formattedNameForURL = enteredCharacter.replace(' ', '+');
-        navigate(`/characters/${encodeURIComponent(formattedName)}`);
+        navigate(`/characters/${formattedNameForURL}`);
       } else {
         setCharacterName(enteredCharacter);
         setCharacterNotFound(true);
