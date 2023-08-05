@@ -11,72 +11,72 @@ import Loading from 'components/Loading';
 export default function Character() {
   const { characterName } = useParams();
   const [characterData, setCharacterData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [searched, setSearched] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [enteredCharacterName, setEnteredCharacterName] = useState('');
   const navigate = useNavigate();
 
   const fetchCharacterData = async (name) => {
-    setLoading(true);
+    setShowLoading(true);
 
     try {
       const formattedName = name.replace(/\+/g, " ");
-      const response = await fetch(
-        `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`
-      );
+      const response = await fetch(`https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`);
       const data = await response.json();
       const characterData = data.characters;
 
       if (characterData.character && characterData.character.name.trim() !== "") {
-        setEnteredCharacterName(characterName)
+        setEnteredCharacterName(characterName);
         setCharacterData(characterData);
       } else {
-        setEnteredCharacterName(characterName)
+        setEnteredCharacterName(characterName);
         setCharacterData(null);
       }
     } catch (error) {
       setCharacterData(null);
     }
 
-    setLoading(false);
+    setShowLoading(false);
   };
 
   // Fetch => URL
   useEffect(() => {
+    setShowLoading(true);
     fetchCharacterData(characterName);
   }, [characterName]);
 
-
   // Fetch => Form
   const searchCharacterHandler = async (enteredCharacter) => {
-    setSearched(true);
+    setShowLoading(true);
 
     if (enteredCharacter.trim().length === 0) {
+      setShowLoading(false);
       return;
     }
 
     try {
-      const response = await fetch(
-        `https://api.tibiadata.com/v3/character/${encodeURIComponent(enteredCharacter)}`
-      );
+      const response = await fetch(`https://api.tibiadata.com/v3/character/${encodeURIComponent(enteredCharacter)}`);
       const data = await response.json();
       const characterData = data.characters;
+
       if (characterData.character && characterData.character.name.trim() !== "") {
-        setEnteredCharacterName(enteredCharacter)
+        setEnteredCharacterName(enteredCharacter);
         setCharacterData(characterData);
-        const formattedNameForURL = enteredCharacter.replace(' ', '+');
-        navigate(`/characters/${formattedNameForURL}`);
-        window.scrollTo(0, 0);
       } else {
-        setEnteredCharacterName(enteredCharacter)
+        setEnteredCharacterName(enteredCharacter);
         setCharacterData(null);
       }
+
+      const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
+      navigate(`/characters/${formattedNameForURL}`);
+      window.scrollTo(0, 0);
     } catch (error) {
       setCharacterData(null);
     }
+
+    setShowLoading(false);
   };
 
-  const isLoading = loading && !searched;
+  const isLoading = showLoading;
   const isCharacterNotFound = !characterData;
   const isCharacterDataAvailable = characterData;
 
@@ -96,9 +96,9 @@ export default function Character() {
               <OtherCharacters character={characterData.other_characters} />
             </>
           )}
-          <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
         </>
       )}
+      <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
     </>
   );
 }
