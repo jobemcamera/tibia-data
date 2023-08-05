@@ -1,21 +1,96 @@
-import AccountInformation from "components/AccountInformation";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import CharacterNotFound from "components/CharacterNotFound";
 import CharacterAchievements from "components/CharacterAchievements";
-import CharacterInformation from "components/CharacterInformation";
+import AccountInformation from "components/AccountInformation";
 import OtherCharacters from "components/OtherCharacters";
-import React from "react";
+import CharacterInformation from "components/CharacterInformation";
+import Form from "components/Form";
+import Loading from 'components/Loading';
 
-export default function Character({ character }) {
+export default function Character() {
+  const { characterName } = useParams();
+  const [characterData, setCharacterData] = useState(null);
+  const [validField, setValidField] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [invalidData, setInvalidData] = useState(false);
+  const [searched, setSearched] = useState(false);
+  const characterInputRef = useRef();
+  const navigate = useNavigate();
 
-  const characterInformation = character.character;
-  const characterAchievements = character.achievements;
-  const accountInformation = character.account_information;
-  const otherCharacters = character.other_characters;
+  useEffect(() => {
+    const fetchCharacterData = async () => {
+      setLoading(true);
+      try {
+        const formattedName = characterName.replace(/\+/g, " ");
+        const response = await fetch(
+          `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName).replace(/%20/g, "+")}`
+        );
+        const data = await response.json();
+        setCharacterData(data.characters);
+        setInvalidData(false);
+      } catch (error) {
+        setCharacterData(null);
+        setInvalidData(true);
+      }
+      setLoading(false);
+    };
+
+    fetchCharacterData();
+  }, [characterName]);
+
+  const searchCharacterHandler = async (enteredCharacter) => {
+    setValidField(false);
+    setSearched(true);
+
+    if (enteredCharacter.trim().length === 0) {
+      return;
+    }
+
+    const formattedNameForAPI = enteredCharacter.replace(/\s/g, '%20');
+    try {
+      const response = await fetch(
+        `https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedNameForAPI)}`
+      );
+      const data = await response.json();
+      const characterData = data.characters;
+      if (characterData.character && characterData.character.name.trim() !== "") {
+        setCharacterData(characterData);
+        const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
+        navigate(`/characters/${encodeURIComponent(formattedNameForURL)}`);
+        setInvalidData(false);
+      } else {
+        setValidField(true);
+        setCharacterData(null);
+        setInvalidData(true);
+      }
+    } catch (error) {
+      setValidField(true);
+      setCharacterData(null);
+      setInvalidData(true);
+    }
+  };
+
   return (
     <>
-      {characterInformation && (<CharacterInformation character={characterInformation} />)}
-      <CharacterAchievements character={characterAchievements} />
-      <AccountInformation character={accountInformation} />
-      <OtherCharacters character={otherCharacters} />
+      {loading && !searched ? (
+        <Loading />
+      ) : (
+        <>
+          {validField && !characterData && (
+            <CharacterNotFound character={characterInputRef.current?.value || characterName} />
+          )}
+          {characterData && (
+            <>
+              <CharacterInformation character={characterData.character} />
+              <CharacterAchievements character={characterData.achievements} />
+              <AccountInformation character={characterData.account_information} />
+              <OtherCharacters character={characterData.other_characters} />
+            </>
+          )}
+          <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
+        </>
+      )}
     </>
-  )
+  );
 }
