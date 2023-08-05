@@ -52,8 +52,13 @@
         }
       }
 
-      .status {
-        color: $status-color;
+      .status_online {
+        color: $status-on-color;
+        font-weight: bold;
+      }
+
+      .status_offline {
+        color: $status-off-color;
         font-weight: bold;
       }
     }

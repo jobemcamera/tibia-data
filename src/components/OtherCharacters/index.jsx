@@ -13,14 +13,18 @@ export default function OtherCharacters({ character }) {
       return null;
     }
 
+    const getStatusClass = (status) => {
+      return status === 'online' ? styles.status_online : styles.status_offline;
+    };
+
     return character.map((info) => (
       <tr key={info.name}>
         <td>{info.name}</td>
         <td>{info.world}</td>
-        <td className={styles.status}>
-          {info.status == 'online' ? 'online' : ''}
+        <td className={getStatusClass(info.status)}>
+          {info.status == 'online' ? 'online' : 'offline'}
         </td>
-        <td><Button title='View' action={viwOtherCharacters}/></td>
+        <td><Button title='View' action={viwOtherCharacters} /></td>
       </tr>
     ));
   }
