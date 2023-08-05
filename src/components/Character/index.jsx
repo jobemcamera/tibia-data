@@ -55,12 +55,14 @@ export default function Character() {
       const data = await response.json();
       const characterData = data.characters;
       if (characterData.character && characterData.character.name.trim() !== "") {
+        setEnteredCharacter(enteredCharacter)
         setCharacterData(characterData);
         const formattedNameForURL = enteredCharacter.replace(' ', '+');
         navigate(`/characters/${formattedNameForURL}`);
         setInvalidData(false);
         window.scrollTo(0, 0);
       } else {
+        setEnteredCharacter(enteredCharacter)
         setValidField(true);
         setCharacterData(null);
         setInvalidData(true);
