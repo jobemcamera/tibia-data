@@ -9,6 +9,7 @@ import Characters from "pages/Characters";
 import Worlds from "pages/Worlds";
 import World from "pages/World";
 import Footer from "components/Footer";
+import Character from "components/Character";
 
 function AppRoutes() {
 	return (
@@ -22,6 +23,7 @@ function AppRoutes() {
 					<Route path="characters" element={<Characters />} />
 					<Route path="worlds" element={<Worlds />} />
 					<Route path="worlds/:world" element={<World />} />
+					<Route path="characters/:characterName" element={<Character />} /> 
 				</Route>
 			</Routes>
 			<Footer />
