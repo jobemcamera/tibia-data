@@ -2,10 +2,17 @@ import React from 'react';
 import MainTitle from 'components/MainTitle';
 import styles from './OtherCharacters.module.scss';
 import Button from 'components/Button';
+import { useNavigate } from 'react-router-dom';
 
 export default function OtherCharacters({ character }) {
-  const viewOtherCharacters = (event) => {
+  const navigate = useNavigate();
+
+  const viewOtherCharacters = (event, characterName) => {
     event.preventDefault();
+
+    const formattedNameForURL = characterName.replace(/\s/g, '+');
+    navigate(`/characters/${formattedNameForURL}`);
+    window.scrollTo(0, 0);
   }
 
   const renderCharacterInfo = () => {
@@ -22,9 +29,9 @@ export default function OtherCharacters({ character }) {
         <td>{info.name}</td>
         <td>{info.world}</td>
         <td className={getStatusClass(info.status)}>
-          {info.status == 'online' ? 'online' : 'offline'}
+          {info.status === 'online' ? 'online' : 'offline'}
         </td>
-        <td><Button title='View' action={viewOtherCharacters} /></td>
+        <td><Button title='View' action={(event) => viewOtherCharacters(event, info.name)} /></td>
       </tr>
     ));
   }
