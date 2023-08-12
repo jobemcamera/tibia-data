@@ -1,99 +1,119 @@
 @import "../../styles/variables";
 
-.worldslist__table {
-    max-width: 100%;
-    width: 100%;
-    overflow-x: auto;
-    table-layout: fixed;
-    margin: 1em auto 0 auto;
-    border: 1px solid $background-color-page;
-    border-radius: 15px;
-    box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
-    &__thead {
-        color: $secundary-color;
-        background-color: $background-color-form;
-        box-sizing: border-box;
-        height: 2.187rem;
-        &__tr {
-            &__th {
-                min-width: 1.5rem;
-                width: 1.5rem;
-                &:first-child {
-                    border-radius: 15px 0 0 0;
-                    width: 1.2rem;
-                }
-                &:nth-child(2) {
-                    width: 1rem;
-                }
-                &:nth-child(3) {
-                    width: 2.5rem;
-                }
-                &:nth-child(4) {
-                    width: 3rem;
-                }
-                &:nth-child(5) {
-                    width: 3rem;
-                }
-                &:last-child {
-                    border-radius: 0 15px 0 0;
-                    width: 2rem;
-                    
-                }
-                .worldslist__options__container {
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                    flex-wrap: wrap;
-                }
-            }
+table {
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto;
+  table-layout: fixed;
+  margin: 1em auto 0 auto;
+  border: 1px solid $background-color-page;
+  border-radius: 15px;
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
+
+  thead {
+    color: $secundary-color;
+    background-color: $background-color-form;
+    box-sizing: border-box;
+    height: 2.187rem;
+
+    tr {
+      th {
+        min-width: 1.5rem;
+        width: 1.5rem;
+
+        &:first-child {
+          border-radius: 15px 0 0 0;
+          width: 1.2rem;
         }
-    }
-    &__tbody {
-        &__tr {
-            &:nth-child(even) {
-                background-color: $background-color-content;
-            }
-            &:last-child {
-                td:first-child {
-                    border-radius: 0 0 0 15px;
-                }
-                td:last-child {
-                    border-radius: 0 0 15px 0;
-                }
-            }
-            &__td {
-                min-width: 100px;
-                width: 100px;
-                padding: 0 7px;
-                a {
-                    text-decoration: none;
-                    color: $link-color;
-                    font-weight: 700;
-                    a:visited {
-                        color: none;
-                        text-decoration: none;
-                    }
-                }
-                .flags {
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    img {
-                        width: 30px;
-                        height: 25px;
-                    }
-                }
-                &:nth-child(2) {
-                    text-align: right;
-                }
-                &:last-child {
-                    text-align: center;
-                }
-            }
-            .not__found {
-                padding: 1em 0;
-                text-align: center;
-            }
+
+        &:nth-child(2) {
+          width: 1rem;
         }
+
+        &:nth-child(3) {
+          width: 2.5rem;
+        }
+
+        &:nth-child(4) {
+          width: 3rem;
+        }
+
+        &:nth-child(5) {
+          width: 3rem;
+        }
+
+        &:last-child {
+          border-radius: 0 15px 0 0;
+          width: 2rem;
+
+        }
+
+        .options__container {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+      }
     }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: $background-color-content;
+      }
+
+      &:last-child {
+        td:first-child {
+          border-radius: 0 0 0 15px;
+        }
+
+        td:last-child {
+          border-radius: 0 0 15px 0;
+        }
+      }
+
+      td {
+        min-width: 100px;
+        width: 100px;
+        padding: 0 7px;
+
+        a {
+          text-decoration: none;
+          color: $link-color;
+          font-weight: 700;
+
+          a:visited {
+            color: none;
+            text-decoration: none;
+          }
+        }
+
+        .flags {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          img {
+            width: 30px;
+            height: 25px;
+          }
+        }
+
+        &:nth-child(2) {
+          text-align: right;
+        }
+
+        &:last-child {
+          text-align: center;
+        }
+      }
+
+      .not__found {
+        padding: 1em 0;
+        text-align: center;
+      }
+    }
+  }
 }
