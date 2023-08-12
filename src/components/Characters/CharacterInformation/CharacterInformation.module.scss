@@ -2,7 +2,7 @@
 
 .container {
   margin-bottom: 1rem;
-  
+
   table {
     max-width: 100%;
     width: 100%;
@@ -33,6 +33,17 @@
           width: 20%;
           font-weight: bold;
           vertical-align: top;
+        }
+
+        a {
+          text-decoration: none;
+          color: $link-color;
+          font-weight: 700;
+
+          a:visited {
+            color: none;
+            text-decoration: none;
+          }
         }
       }
     }

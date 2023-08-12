@@ -2,6 +2,7 @@ import React from 'react';
 import { formatDate } from 'components/SharedFunctions';
 import styles from './CharacterInformation.module.scss';
 import MainTitle from 'components/MainTitle';
+import { Link } from 'react-router-dom';
 
 function CharacterInformation({ character }) {
   const renderCharacterInfo = () => {
@@ -47,10 +48,20 @@ function CharacterInformation({ character }) {
       { label: 'Account Status', value: character.account_status },
     ];
 
-
     return characterInfo.map((info) => {
       if (!info || info.value === null) {
         return null;
+      }
+
+      if (info.value === character.married_to) {
+        return (
+          <tr key={info.label}>
+            <td>{info.label}:</td>
+            <td>
+              <Link to={`/characters/${info.value.replace(/\s/g, '+')}`}>{info.value}</Link>
+            </td>
+          </tr>
+        );
       }
 
       return (
