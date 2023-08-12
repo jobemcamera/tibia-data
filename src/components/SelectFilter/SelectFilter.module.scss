@@ -1,13 +1,13 @@
 @import "../../styles/variables";
 
-.select__filter {
-    background-color: $background-color-content;
-    font-size: 1rem;
-    padding: 0.062rem 0.312rem;
-    border: none;
+.filter {
+	background-color: $background-color-content;
+	font-size: 1rem;
+	padding: 0.062rem 0.312rem;
+	border: none;
 
-    &__option {
-        background-color: $background-color-content;
-        font-size: 1.125rem;
-    }
+	option {
+		background-color: $background-color-content;
+		font-size: 1.125rem;
+	}
 }
