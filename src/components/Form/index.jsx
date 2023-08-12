@@ -16,20 +16,17 @@ export default function Form({ name, onSearchCharacter }) {
   }
 
   return (
-    <section className={styles.form__container}>
+    <section className={styles.container}>
       <MainTitle title={name} />
       <form onSubmit={sendForm}>
-        <div className={styles.field__container}>
-          <label className={styles.field__container__label}>Character Name</label>
-          <input
-            type="text"
-            value={characterName}
-            className={styles.field__container__input}
-            placeholder="Enter the character name"
-            onChange={(e) => setCharacterName(e.target.value)}
-          />
-          <Button title="Submit" action={handleSubmit} />
-        </div>
+        <label>Character Name</label>
+        <input
+          type="text"
+          value={characterName}
+          placeholder="Enter the character name"
+          onChange={(e) => setCharacterName(e.target.value)}
+        />
+        <Button title="Submit" action={handleSubmit} />
       </form>
     </section>
   );
