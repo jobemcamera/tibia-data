@@ -12,6 +12,7 @@
     border: 1px solid $background-color-page;
     border-radius: 0 0 15px 15px;
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
+
     // border-collapse: collapse;
     tr {
       &:nth-child(odd) {
@@ -21,23 +22,28 @@
       &:last-child td:first-child {
         border-radius: 0 0 0 15px;
       }
+
       &:last-child td:last-child {
         border-radius: 0 0 15px 0;
       }
 
       position: relative;
+
       td {
         padding: 0.3rem 0.5rem;
+
         &:first-child {
           width: 20%;
           font-weight: bold;
           vertical-align: top;
         }
+
         .grade {
           width: 24px;
           height: 24px;
           margin-right: 4px;
         }
+
         .secret {
           position: absolute;
           width: 55px;
@@ -46,9 +52,6 @@
           right: 5px;
         }
       }
-
     }
-
-
   }
 }

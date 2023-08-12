@@ -40,7 +40,7 @@ export default function CharacterAchievements({ character }) {
           <tbody>
             {character ? renderCharacterInfo() : (
               <tr>
-                <td colSpan="2" style={{ fontWeight: 'normal' }}>There are no achievements set to be displayed for this character.</td>
+                <td colSpan="2" style={{ fontWeight: 'normal', borderRadius: '0 0 15px 15px' }}>There are no achievements set to be displayed for this character.</td>
               </tr>
             )}
           </tbody>
