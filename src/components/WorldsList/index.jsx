@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import SelectFilter from 'components/SelectFilter';
 
 export default function WorldsList({ worlds }) {
-
 	const [filters, setFilters] = useState({
 		location: '',
 		pvp_type: '',
@@ -24,16 +23,14 @@ export default function WorldsList({ worlds }) {
 		const isLocationMatched = filters.location === '' || filters.location === world.location;
 		const isPvpTypeMatched = filters.pvp_type === '' || filters.pvp_type === world.pvp_type;
 		const isTransferTypeMatched = filters.transfer_type === '' || filters.transfer_type === world.transfer_type;
-		const isBattleyeDataMatched = filters.battleye_date === '' || filters.battleye_date === world.battleye_date;
 
-		return isLocationMatched && isPvpTypeMatched && isTransferTypeMatched && isBattleyeDataMatched;
+		return isLocationMatched && isPvpTypeMatched && isTransferTypeMatched;
 	});
 
 	const options = {
 		location: ["", "Europe", "South America", "North America"],
 		pvp_type: ["", "Open PvP", "Optional PvP", "Hardcore PvP", "Retro Open PvP", "Retro Hardcore PvP"],
 		transfer_type: ["", "regular", "blocked", "locked"],
-		battleye_date: ["", "date", "release"] // Tenho que arrumar essa parte depois para Green / Yellow / Not Protected 
 	}
 
 	// Function to show the world's location + location's flag (Europe = UK, South America = Brazil, North America = USA)
@@ -42,21 +39,21 @@ export default function WorldsList({ worlds }) {
 			return (
 				<div className={styles.flags}>
 					<p>{location}</p>
-					<img src="https://www.bandeirasnacionais.com/data/flags/w580/gb.webp" alt="The flag of The United Kingdom" />
+					<img src="https://www.bandeirasnacionais.com/data/flags/w580/gb.webp" alt="The flag of The United Kingdom" title='England' />
 				</div>
 			);
 		} else if (location === 'South America') {
 			return (
 				<div className={styles.flags}>
 					<p>{location}</p>
-					<img src="https://www.bandeirasnacionais.com/data/flags/w580/br.webp" alt="The flag of Brazil" />
+					<img src="https://www.bandeirasnacionais.com/data/flags/w580/br.webp" alt="The flag of Brazil" title='Brazil' />
 				</div>
 			);
 		} else if (location === 'North America') {
 			return (
 				<div className={styles.flags}>
 					<p>{location}</p>
-					<img src="https://www.bandeirasnacionais.com/data/flags/w580/us.webp" alt='The flag of The United States of America' />
+					<img src="https://www.bandeirasnacionais.com/data/flags/w580/us.webp" alt='The flag of The United States of America' title='USA' />
 				</div>
 			);
 		} else {
@@ -122,16 +119,8 @@ export default function WorldsList({ worlds }) {
 									/>
 								</div>
 							</th>
-							<th >
-								<div className={styles.options__container}>
-									<span>BattlEye </span>
-									<SelectFilter
-										filters={filters}
-										handleFilterChange={handleFilterChange}
-										options={options.battleye_date}
-										info="battleye_date"
-									/>
-								</div>
+							<th>
+								<span>BattlEye </span>
 							</th>
 						</tr>
 					</thead>
