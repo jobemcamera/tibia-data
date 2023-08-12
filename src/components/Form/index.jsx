@@ -1,14 +1,14 @@
 import MainTitle from "components/MainTitle";
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import styles from "./Form.module.scss";
 import Button from "components/Button";
 
 export default function Form({ name, onSearchCharacter }) {
-  const characterInputRef = useRef();
+  const [characterName, setCharacterName] = useState('');
 
   const handleSubmit = () => {
-    const enteredCharacter = characterInputRef.current.value;
-    onSearchCharacter(enteredCharacter);
+    onSearchCharacter(characterName);
+    setCharacterName('');
   };
 
   function sendForm(event) {
@@ -21,7 +21,13 @@ export default function Form({ name, onSearchCharacter }) {
       <form onSubmit={sendForm}>
         <div className={styles.field__container}>
           <label className={styles.field__container__label}>Character Name</label>
-          <input type="text" ref={characterInputRef} className={styles.field__container__input} placeholder="Enter the character name"/>
+          <input
+            type="text"
+            value={characterName}
+            className={styles.field__container__input}
+            placeholder="Enter the character name"
+            onChange={(e) => setCharacterName(e.target.value)}
+          />
           <Button title="Submit" action={handleSubmit} />
         </div>
       </form>
