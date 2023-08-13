@@ -36,10 +36,10 @@ export default function World() {
     fetchWorldInfo();
   }, [world]);
 
-  const back = useNavigate();
+  const navigate = useNavigate();
 
   function backPage() {
-    return back(-1);
+    return navigate('/worlds');
   }
 
   const tableData = [
