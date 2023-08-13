@@ -4,20 +4,33 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'components/Button';
 import { formatDate } from 'components/SharedFunctions';
+import Loading from 'components/Loading';
+import WorldNotFound from 'components/Worlds/WorldNotFound';
 
 export default function World() {
   const { world } = useParams();
   const [worldInfo, setWorldInfo] = useState({});
+  const [enteredWorldName, setEnteredWorldName] = useState('');
+  const [showLoading, setShowLoading] = useState(false);
 
   useEffect(() => {
+    setShowLoading(true);
     const fetchWorldInfo = async () => {
       try {
         const response = await fetch(`https://api.tibiadata.com/v3/world/${world}`);
         const jsonData = await response.json();
-        setWorldInfo(jsonData.worlds.world);
+        if(jsonData.worlds.world.status != "") {
+          setWorldInfo(jsonData.worlds.world);
+          console.log(worldInfo)
+        } else {
+          setWorldInfo({});
+          console.log(worldInfo)
+        }
       } catch (error) {
-        console.error("Error fetching world info:", error);
+        setWorldInfo({});
       }
+      setEnteredWorldName(world)
+      setShowLoading(false);
     };
 
     fetchWorldInfo();
@@ -28,8 +41,7 @@ export default function World() {
   function backPage() {
     return back(-1);
   }
-  // "record_date": "2020-05-01T15:58:30Z",
-  // "last_login": "2020-08-31T13:47:00Z",
+
   const tableData = [
     { label: "Status", value: worldInfo.status },
     { label: "Players Online", value: worldInfo.players_online },
@@ -62,21 +74,35 @@ export default function World() {
     { label: "Game World Type", value: worldInfo.game_world_type },
   ];
 
+  const isLoading = showLoading;
+
   return (
-    <section className={styles.container}>
-      <MainTitle title={world}>
-        <Button title="Back" action={backPage} />
-      </MainTitle>
-      <table>
-        <tbody>
-          {tableData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.label}:</td>
-              <td>{item.value || "N/A"}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </section>
+    <>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          {Object.keys(worldInfo).length == 0 ? (
+            <WorldNotFound world={enteredWorldName} />
+          ) : (
+            <section className={styles.container}>
+              <MainTitle title={world}>
+                <Button title="Back" action={backPage} />
+              </MainTitle>
+              <table>
+                <tbody>
+                  {tableData.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.label}:</td>
+                      <td>{item.value || "N/A"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          )}
+        </>
+      )}
+    </>
   );
+  
 }
