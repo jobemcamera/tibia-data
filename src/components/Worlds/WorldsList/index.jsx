@@ -81,7 +81,7 @@ export default function WorldsList({ worlds }) {
 	return (
 		<>
 			<section>
-				<table className={styles.table}>
+				<table className={styles.container}>
 					<thead>
 						<tr>
 							<th>World</th>
