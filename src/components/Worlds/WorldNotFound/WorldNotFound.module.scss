@@ -1,0 +1,12 @@
+@import "../../../styles/variables";
+
+.container {
+  border: 1px solid $background-color-page;
+  border-radius: 20px;
+  background-color: $background-color-content;
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
+
+  p {
+    padding: 0 1em;
+  }
+}
