@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import CharacterNotFound from "../CharacterNotFound";
-import CharacterInformation from "../CharacterInformation";
-import CharacterAchievements from "../CharacterAchievements";
-import AccountInformation from "../AccountInformation";
-import OtherCharacters from "../OtherCharacters";
+import CharacterNotFound from "../../components/Characters/CharacterNotFound";
+import CharacterInformation from "../../components/Characters/CharacterInformation";
+import CharacterAchievements from "../../components/Characters/CharacterAchievements";
+import AccountInformation from "../../components/Characters/AccountInformation";
+import OtherCharacters from "../../components/Characters/OtherCharacters";
 import Form from "components/Form";
 import Loading from "components/Loading";
 
