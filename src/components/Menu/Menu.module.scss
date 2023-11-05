@@ -1,21 +1,39 @@
 @import "../../styles/variables";
 
-.nav {
+.container {
 	border: 3px solid $background-color-page;
 	background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
 	background-repeat: repeat-x;
 	background-size: contain;
-	width: 40%;
+	width: 50%;
 	margin: 20px auto;
 	border-radius: 15px;
 	box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 
-	ul {
+	.logoContainer {
 		display: flex;
-		flex-wrap: wrap;
-		text-align: center;
 		align-items: center;
-		justify-content: space-around;
-		padding: 0;
+		justify-content: space-between;
+		width: 150px;
+
+		h1 {
+			color: $title-color;
+			font-size: 20px;
+		}
+	}
+
+	nav {
+		ul {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+			flex-wrap: wrap;
+			text-align: center;
+			align-items: center;
+			padding: 0;
+		}
 	}
 }
