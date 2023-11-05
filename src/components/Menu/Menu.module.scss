@@ -5,18 +5,21 @@
 	background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
 	background-repeat: repeat-x;
 	background-size: contain;
-	width: 50%;
+	width: 65%;
 	margin: 20px auto;
+	min-height: 52px;
 	border-radius: 15px;
 	box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
+	padding: 0 2.45rem;
 	align-items: center;
+	position: relative;
 
 	.logoContainer {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: space-around;
 		width: 150px;
 
 		h1 {
@@ -25,7 +28,34 @@
 		}
 	}
 
+	button {
+		background-color: $background-color-button-start;
+		border-radius: 10px;
+		border: 3px solid $background-color-button-border;
+		display: none;
+
+		@media (max-width: 1200px) {
+			display: block;
+		}
+
+		img {
+			background-color: $background-color-button-start;
+			width: 24px;
+			height: 24px;
+		}
+	}
+
 	nav {
+		@media (max-width: 1200px) {
+			position: absolute;
+			right: 35px;
+			top: 60px;
+			border-radius: 10px;
+			background-color: $background-color-home;
+			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+			z-index: 999;
+		}
+
 		ul {
 			display: flex;
 			justify-content: space-between;
@@ -34,6 +64,13 @@
 			text-align: center;
 			align-items: center;
 			padding: 0;
+
+			@media (max-width: 1200px) {
+				flex-direction: column;
+				align-items: flex-end;
+				gap: 10px;
+				padding-right: 10px;
+			}
 		}
 	}
 }

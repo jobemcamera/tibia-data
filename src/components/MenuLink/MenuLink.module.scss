@@ -13,6 +13,10 @@
 
     &:hover {
       color: $button-color;
+
+      @media (max-width: 1200px) {
+        color: $title-color
+      }
     }
 
     &:hover::before {
@@ -22,6 +26,17 @@
       display: flex;
       width: 100%;
       bottom: -1px;
+      
+      @media (max-width: 1200px) {
+        color: $title-color;
+        border-bottom: 2px solid $title-color;
+      }
+
+    }
+
+    @media (max-width: 1200px) {
+      color: $main-color;
+      text-shadow: none;
     }
   }
 }
