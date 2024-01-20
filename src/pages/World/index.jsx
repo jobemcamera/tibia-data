@@ -19,7 +19,7 @@ export default function World() {
       try {
         const response = await fetch(`https://api.tibiadata.com/v3/world/${world}`);
         const jsonData = await response.json();
-        if(jsonData.worlds.world.status != "") {
+        if (jsonData.worlds.world.status != "") {
           setWorldInfo(jsonData.worlds.world);
           console.log(worldInfo)
         } else {
@@ -41,6 +41,8 @@ export default function World() {
   function backPage() {
     return navigate('/worlds');
   }
+
+  const titleCapitalized = world && world.charAt(0).toUpperCase() + world.slice(1)
 
   const tableData = [
     { label: "Status", value: worldInfo.status },
@@ -85,7 +87,7 @@ export default function World() {
             <WorldNotFound world={enteredWorldName} />
           ) : (
             <section className={styles.container}>
-              <MainTitle title={world}>
+              <MainTitle title={titleCapitalized}>
                 <Button title="Back" action={backPage} />
               </MainTitle>
               <table>
@@ -104,5 +106,5 @@ export default function World() {
       )}
     </>
   );
-  
+
 }
