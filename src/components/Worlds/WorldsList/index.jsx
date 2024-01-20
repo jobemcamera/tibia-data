@@ -33,51 +33,6 @@ export default function WorldsList({ worlds }) {
 		transfer_type: ["", "regular", "blocked", "locked"],
 	}
 
-	// Function to show the world's location + location's flag (Europe = UK, South America = Brazil, North America = USA)
-	function worldLocation(location) {
-		if (location === 'Europe') {
-			return (
-				<div className={styles.flags}>
-					<p>{location}</p>
-					<img src="https://www.bandeirasnacionais.com/data/flags/w580/gb.webp" alt="The flag of The United Kingdom" title='England' />
-				</div>
-			);
-		} else if (location === 'South America') {
-			return (
-				<div className={styles.flags}>
-					<p>{location}</p>
-					<img src="https://www.bandeirasnacionais.com/data/flags/w580/br.webp" alt="The flag of Brazil" title='Brazil' />
-				</div>
-			);
-		} else if (location === 'North America') {
-			return (
-				<div className={styles.flags}>
-					<p>{location}</p>
-					<img src="https://www.bandeirasnacionais.com/data/flags/w580/us.webp" alt='The flag of The United States of America' title='USA' />
-				</div>
-			);
-		} else {
-			return null;
-		}
-	}
-
-	// Function to show the BattlEye type (green, yellow or nothing)
-	function battleyeType(date) {
-		if (date === "release") {
-			return (
-				<img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Green BattlEye icon' />
-			);
-		} else if (date === "") {
-			return (
-				<p></p>
-			);
-		} else {
-			return (
-				<img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Yellow BattlEye icon' />
-			);
-		}
-	}
-
 	return (
 		<>
 			<section>
@@ -149,4 +104,54 @@ export default function WorldsList({ worlds }) {
 			</section>
 		</>
 	)
+}
+
+// Function to show the world's location + location's flag (Europe = UK, South America = Brazil, North America = USA)
+const worldLocation = (location) => {
+	const locationObj = {
+		Europe: {
+			flagUrl: "https://www.bandeirasnacionais.com/data/flags/w580/gb.webp",
+			alt: "The flag of The United Kingdom",
+			title: "England"
+		},
+		"South America": {
+			flagUrl: "https://www.bandeirasnacionais.com/data/flags/w580/br.webp",
+			alt: "The flag of Brazil",
+			title: "Brazil"
+		},
+		"North America": {
+			flagUrl: "https://www.bandeirasnacionais.com/data/flags/w580/us.webp",
+			alt: "The flag of The United States of America",
+			title: "USA"
+		}
+	}
+
+	const locationInfo = locationObj[location];
+
+	if (!locationInfo) return;
+
+	return (
+		<div className={styles.flags}>
+			<p>{location}</p>
+			<img src={locationInfo.flagUrl} alt={locationInfo.alt} title={locationInfo.title} />
+		</div>
+	);
+}
+
+
+// Function to show the BattlEye type (green, yellow or nothing)
+const battleyeType = (date) => {
+	if (date === "release") {
+		return (
+			<img src={'https://static.tibia.com/images/global/content/icon_battleyeinitial.gif'} alt='Green BattlEye icon' />
+		);
+	} else if (date === "") {
+		return (
+			<p></p>
+		);
+	} else {
+		return (
+			<img src={'https://static.tibia.com/images/global/content/icon_battleye.gif'} alt='Yellow BattlEye icon' />
+		);
+	}
 }
