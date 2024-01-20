@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import styles from './WorldsList.module.scss'
 import { Link } from 'react-router-dom'
 import SelectFilter from 'components/SelectFilter';
+import Loading from 'components/Loading';
 
-export default function WorldsList({ worlds }) {
+export default function WorldsList({ worlds, isLoading }) {
 	const [filters, setFilters] = useState({
 		location: '',
 		pvp_type: '',
@@ -52,7 +53,7 @@ export default function WorldsList({ worlds }) {
 									/>
 								</div>
 							</th>
-							<th >
+							<th>
 								<div className={styles.options__container}>
 									<span>PvP Type </span>
 									<SelectFilter
@@ -80,7 +81,19 @@ export default function WorldsList({ worlds }) {
 						</tr>
 					</thead>
 					<tbody>
-						{filteredWorlds.length > 0 ? filteredWorlds.map(world => (
+						{isLoading &&
+							<tr>
+								<td>
+									<Loading />
+								</td>
+							</tr>
+						}
+						{!isLoading && !filteredWorlds && (
+							<tr>
+								<td colSpan={6} className={styles.not__found}>Not found</td>
+							</tr>
+						)}
+						{filteredWorlds.length > 0 && filteredWorlds.map(world => (
 							<tr key={world.name}>
 								<td>
 									<Link to={world.name}>
@@ -93,11 +106,7 @@ export default function WorldsList({ worlds }) {
 								<td>{world.transfer_type}</td>
 								<td>{battleyeType(world.battleye_date)}</td>
 							</tr>
-						)) : (
-							<tr>
-								<td colSpan={6} className={styles.not__found}>Not found</td>
-							</tr>
-						)
+						))
 						}
 					</tbody>
 				</table>

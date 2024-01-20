@@ -7,7 +7,7 @@ export default function Worlds() {
 
 	const [records, setRecords] = useState([]);
 	const [worlds, setWorlds] = useState([]);
-	const [removeLoading, setRemoveLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(true)
 
 	// Records
 	useEffect(() => {
@@ -15,7 +15,7 @@ export default function Worlds() {
 			const response = await fetch('https://api.tibiadata.com/v3/worlds');
 			const jsonData = await response.json();
 			setRecords(jsonData.worlds);
-			setRemoveLoading(true)
+			setIsLoading(false)
 		};
 
 		records();
@@ -28,7 +28,7 @@ export default function Worlds() {
 			const response = await fetch('https://api.tibiadata.com/v3/worlds');
 			const jsonData = await response.json();
 			setWorlds(jsonData.worlds.regular_worlds);
-			setRemoveLoading(true)
+			setIsLoading(false)
 		};
 
 		worlds();
@@ -38,9 +38,9 @@ export default function Worlds() {
 	return (
 		<>
 			<Records records={records}>
-				{!removeLoading && <Loading />}
+				{isLoading && <Loading />}
 			</Records>
-			<WorldsList worlds={worlds} />
+			<WorldsList worlds={worlds} isLoading={isLoading} />
 		</>
 	)
 }
