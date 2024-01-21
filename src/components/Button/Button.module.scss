@@ -14,6 +14,10 @@
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
     text-shadow: $text-shadow;
 
+    @media (max-width: 600px) {
+      font-size: $main-size;
+    }
+
     &:hover {
       background: linear-gradient(to bottom, $background-color-button-end, $background-color-button-start) border-box;
     }
