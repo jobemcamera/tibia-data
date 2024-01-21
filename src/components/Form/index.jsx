@@ -19,14 +19,18 @@ export default function Form({ name, onSearchCharacter }) {
     <section className={styles.container}>
       <MainTitle title={name} />
       <form onSubmit={sendForm}>
-        <label>Character Name</label>
-        <input
-          type="text"
-          value={characterName}
-          placeholder="Enter the character name"
-          onChange={(e) => setCharacterName(e.target.value)}
-        />
-        <Button title="Submit" action={handleSubmit} />
+        <div className={styles.inputLabel}>
+          <label>Character Name</label>
+          <input
+            type="text"
+            value={characterName}
+            placeholder="Enter the character name"
+            onChange={(e) => setCharacterName(e.target.value)}
+          />
+        </div>
+        <div className={styles.button}>
+          <Button title="Submit" action={handleSubmit} />
+        </div>
       </form>
     </section>
   );
