@@ -46,15 +46,7 @@
 	}
 
 	nav {
-		@media (max-width: 1200px) {
-			position: absolute;
-			right: 35px;
-			top: 60px;
-			border-radius: 10px;
-			background-color: $background-color-home;
-			box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-			z-index: 999;
-		}
+		display: flex;
 
 		ul {
 			display: flex;
@@ -66,11 +58,30 @@
 			padding: 0;
 
 			@media (max-width: 1200px) {
-				flex-direction: column;
-				align-items: flex-end;
-				gap: 10px;
-				padding-right: 10px;
+				display: none;
 			}
 		}
+	}
+
+	.navigationOpenedMenu {
+		display: flex;
+	}
+
+	.menuOpenedNav {
+		position: absolute;
+		right: 35px;
+		top: 60px;
+		border-radius: 10px;
+		background-color: $background-color-home;
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+		z-index: 999;
+	}
+
+	.menuOpenedUl {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 10px;
+		padding-right: 10px;
 	}
 }
