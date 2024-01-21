@@ -1,31 +1,48 @@
 @import "../../styles/variables";
 
 footer {
-    text-align: center;
-    width: 40%;
-    margin: 1rem auto;
-    section {
-        border: 0.187rem solid $background-color-page;
-        background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
-        background-repeat: repeat-x;
-        background-size: contain;
-        padding: 0;
-        color: $title-color;
-        border-radius: 0.937rem;
-        box-shadow: 0.437rem 0.437rem 0.937rem rgba(0, 0, 0, 0.2);
-        p {
-            margin: 0.625rem;
-            .footer__link {
-                text-decoration: none;
-                color: $secundary-color;
-                font-weight: 700;
-                text-shadow: $text-shadow;
-                cursor: pointer;
-                &:visited {
-                    color: none;
-                    text-decoration: none;
-                }
-            }
-        }
+  text-align: center;
+  width: 40%;
+  margin: 1rem auto;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+
+  section {
+    border: 0.187rem solid $background-color-page;
+    background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
+    background-repeat: repeat-x;
+    background-size: contain;
+    padding: 0;
+    color: $title-color;
+    border-radius: 0.937rem;
+    box-shadow: 0.437rem 0.437rem 0.937rem rgba(0, 0, 0, 0.2);
+
+    @media (max-width: 768px) {
+      background-size: cover;
     }
+
+    p {
+      margin: 0.625rem;
+
+      .footer__link {
+        text-decoration: none;
+        color: $secundary-color;
+        font-weight: 700;
+        text-shadow: $text-shadow;
+        cursor: pointer;
+        
+        &:visited {
+          color: none;
+          text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+          font-size: $mobile-size;
+          line-height: 2;
+        }
+      }
+    }
+  }
 }
