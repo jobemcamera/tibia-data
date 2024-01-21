@@ -21,10 +21,8 @@ export default function World() {
         const jsonData = await response.json();
         if (jsonData.worlds.world.status != "") {
           setWorldInfo(jsonData.worlds.world);
-          console.log(worldInfo)
         } else {
           setWorldInfo({});
-          console.log(worldInfo)
         }
       } catch (error) {
         setWorldInfo({});
