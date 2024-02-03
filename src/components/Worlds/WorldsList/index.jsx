@@ -20,7 +20,7 @@ export default function WorldsList({ worlds, isLoading }) {
 		}));
 	};
 
-	const filteredWorlds = worlds.filter((world) => {
+	const filteredWorlds = worlds?.filter((world) => {
 		const isLocationMatched = filters.location === '' || filters.location === world.location;
 		const isPvpTypeMatched = filters.pvp_type === '' || filters.pvp_type === world.pvp_type;
 		const isTransferTypeMatched = filters.transfer_type === '' || filters.transfer_type === world.transfer_type;
@@ -93,7 +93,7 @@ export default function WorldsList({ worlds, isLoading }) {
 								<td colSpan={6} className={styles.not__found}>Not found</td>
 							</tr>
 						)}
-						{filteredWorlds.length > 0 && filteredWorlds.map(world => (
+						{filteredWorlds?.length > 0 && filteredWorlds?.map(world => (
 							<tr key={world.name}>
 								<td>
 									<Link to={world.name}>

@@ -1,46 +1,26 @@
 import Loading from 'components/Loading';
 import Records from 'components/Records';
 import WorldsList from 'components/Worlds/WorldsList';
-import React, { useEffect, useState } from 'react';
+import { useWorlds } from 'hooks/useWorlds';
+import React from 'react';
 
 export default function Worlds() {
+	const { data: worlds, isLoading } = useWorlds();
 
-	const [records, setRecords] = useState([]);
-	const [worlds, setWorlds] = useState([]);
-	const [isLoading, setIsLoading] = useState(true)
+	const worldsList = worlds?.regular_worlds
 
-	// Records
-	useEffect(() => {
-		const records = async () => {
-			const response = await fetch('https://api.tibiadata.com/v3/worlds');
-			const jsonData = await response.json();
-			setRecords(jsonData.worlds);
-			setIsLoading(false)
-		};
-
-		records();
-
-	}, [])
-
-	// Worlds
-	useEffect(() => {
-		const worlds = async () => {
-			const response = await fetch('https://api.tibiadata.com/v3/worlds');
-			const jsonData = await response.json();
-			setWorlds(jsonData.worlds.regular_worlds);
-			setIsLoading(false)
-		};
-
-		worlds();
-
-	}, []);
+	const records = {
+		record_players: worlds?.record_players,
+		players_online: worlds?.players_online,
+		quantity: worlds?.regular_worlds.length
+	};
 
 	return (
-		<>
+		<section>
 			<Records records={records}>
 				{isLoading && <Loading />}
 			</Records>
-			<WorldsList worlds={worlds} isLoading={isLoading} />
-		</>
+			<WorldsList worlds={worldsList} isLoading={isLoading} />
+		</section>
 	)
 }
