@@ -15,8 +15,8 @@ export default function Records({ records, isLoading, isError }) {
 						<p>
 							<strong>Overall Maximum: </strong>
 							{formatDigit(records.record_players)}
-							{" players on "}
-							{formatDate(records.record_date, "MMM DD YYYY, HH:mm:ss z")}
+							{!isError && " players on "}
+							{!isError && formatDate(records.record_date, "MMM DD YYYY, HH:mm:ss z")}
 						</p>
 						<p>
 							<strong>Players Online: </strong>
@@ -27,9 +27,6 @@ export default function Records({ records, isLoading, isError }) {
 							{records.quantity || 'N/A'}
 						</p>
 					</>
-				)}
-				{isError && (
-					<p>Server Error!</p>
 				)}
 			</div>
 		</div>
