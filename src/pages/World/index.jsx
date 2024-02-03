@@ -57,7 +57,7 @@ export default function World() {
       {!isLoading && (
         <>
           {worldNotFound || isError ? (
-            <WorldNotFound world={world_name} isError={isError} />
+            <WorldNotFound world={world_name} isError={isError} action={backPage} />
           ) : (
             <section className={styles.container}>
               <MainTitle title={titleCapitalized}>
