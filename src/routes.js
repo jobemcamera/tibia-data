@@ -23,7 +23,7 @@ function AppRoutes() {
 					<Route path="boostablebosses" element={<BoostableBosses />} />
 					<Route path="characters" element={<Characters />} />
 					<Route path="worlds" element={<Worlds />} />
-					<Route path="worlds/:world" element={<World />} />
+					<Route path="worlds/:world_name" element={<World />} />
 					<Route path="characters/:characterName" element={<Character />} /> 
 				</Route>
 			</Routes>
