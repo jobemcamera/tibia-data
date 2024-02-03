@@ -83,7 +83,7 @@ export default function WorldsList({ worlds, isLoading }) {
 					<tbody>
 						{isLoading &&
 							<tr>
-								<td>
+								<td colSpan={6}>
 									<Loading />
 								</td>
 							</tr>

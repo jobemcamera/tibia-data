@@ -2,13 +2,15 @@ import React from 'react'
 import styles from './Records.module.scss'
 import MainTitle from 'components/MainTitle'
 import { formatDate } from 'components/SharedFunctions';
+import Loading from 'components/Loading';
 
-export default function Records({ records, children }) {
+export default function Records({ records, isLoading }) {
 	return (
 		<div className={styles.boosted__container}>
 			<MainTitle title="World Records" />
 			<div className={styles.boosted__context}>
-				{children ? children :
+				{isLoading && <Loading />}
+				{!isLoading && (
 					<>
 						<p>
 							<strong>Overall Maximum: </strong>
@@ -25,7 +27,7 @@ export default function Records({ records, children }) {
 							{records.quantity || 'N/A'}
 						</p>
 					</>
-				}
+				)}
 			</div>
 		</div>
 	)

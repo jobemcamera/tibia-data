@@ -17,9 +17,7 @@ export default function Worlds() {
 
 	return (
 		<section>
-			<Records records={records}>
-				{isLoading && <Loading />}
-			</Records>
+			<Records records={records} isLoading={isLoading} />
 			<WorldsList worlds={worldsList} isLoading={isLoading} />
 		</section>
 	)
