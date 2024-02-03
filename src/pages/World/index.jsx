@@ -10,14 +10,14 @@ import { useWorld } from 'hooks/useWorld';
 
 export default function World() {
   const navigate = useNavigate();
-  const { world_name } = useParams();
-  const { data: world, isLoading, isError } = useWorld(world_name);
+  const { worldName } = useParams();
+  const { data: world, isLoading, isError } = useWorld(worldName);
 
   const backPage = () => navigate('/worlds');
 
   const worldNotFound = world?.status === '';
 
-  const titleCapitalized = world_name && world_name.charAt(0).toUpperCase() + world_name.slice(1)
+  const titleCapitalized = worldName && worldName.charAt(0).toUpperCase() + worldName.slice(1)
 
   const tableData = [
     { label: "Status", value: world?.status },
@@ -57,7 +57,7 @@ export default function World() {
       {!isLoading && (
         <>
           {worldNotFound || isError ? (
-            <WorldNotFound world={world_name} isError={isError} action={backPage} />
+            <WorldNotFound world={worldName} isError={isError} action={backPage} />
           ) : (
             <section className={styles.container}>
               <MainTitle title={titleCapitalized}>
