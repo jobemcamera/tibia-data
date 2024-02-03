@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import SelectFilter from 'components/SelectFilter';
 import Loading from 'components/Loading';
 
-export default function WorldsList({ worlds, isLoading }) {
+export default function WorldsList({ worlds, isLoading, isError }) {
 	const [filters, setFilters] = useState({
 		location: '',
 		pvp_type: '',
@@ -88,9 +88,14 @@ export default function WorldsList({ worlds, isLoading }) {
 								</td>
 							</tr>
 						}
-						{!isLoading && !filteredWorlds && (
+						{!isLoading && filteredWorlds?.length === 0 && (
 							<tr>
 								<td colSpan={6} className={styles.not__found}>Not found</td>
+							</tr>
+						)}
+						{isError && (
+							<tr>
+								<td colSpan={6} className={styles.not__found}>Server Error!</td>
 							</tr>
 						)}
 						{filteredWorlds?.length > 0 && filteredWorlds?.map(world => (

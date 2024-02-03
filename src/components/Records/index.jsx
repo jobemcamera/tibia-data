@@ -4,7 +4,7 @@ import MainTitle from 'components/MainTitle'
 import { formatDate } from 'components/SharedFunctions';
 import Loading from 'components/Loading';
 
-export default function Records({ records, isLoading }) {
+export default function Records({ records, isLoading, isError }) {
 	return (
 		<div className={styles.boosted__container}>
 			<MainTitle title="World Records" />
@@ -27,6 +27,9 @@ export default function Records({ records, isLoading }) {
 							{records.quantity || 'N/A'}
 						</p>
 					</>
+				)}
+				{isError && (
+					<p>Server Error!</p>
 				)}
 			</div>
 		</div>

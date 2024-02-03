@@ -5,7 +5,7 @@ import { useWorlds } from 'hooks/useWorlds';
 import React from 'react';
 
 export default function Worlds() {
-	const { data: worlds, isLoading } = useWorlds();
+	const { data: worlds, isLoading, isError } = useWorlds();
 
 	const worldsList = worlds?.regular_worlds
 
@@ -17,8 +17,8 @@ export default function Worlds() {
 
 	return (
 		<section>
-			<Records records={records} isLoading={isLoading} />
-			<WorldsList worlds={worldsList} isLoading={isLoading} />
+			<Records records={records} isLoading={isLoading} isError={isError} />
+			<WorldsList worlds={worldsList} isLoading={isLoading} isError={isError} />
 		</section>
 	)
 }
