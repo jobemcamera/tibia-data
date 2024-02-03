@@ -11,6 +11,7 @@ export default function Worlds() {
 
 	const records = {
 		record_players: worlds?.record_players,
+		record_date: worlds?.record_date,
 		players_online: worlds?.players_online,
 		quantity: worlds?.regular_worlds.length
 	};
