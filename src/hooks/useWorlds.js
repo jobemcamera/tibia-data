@@ -13,7 +13,8 @@ const fetchData = async () => {
 export function useWorlds() {
   const query = useQuery({
     queryFn: fetchData,
-    queryKey: ['worlds']
+    queryKey: ['worlds'],
+    refetchInterval: 60 * 5 * 1000,
   })
 
   const worlds = query.data;
