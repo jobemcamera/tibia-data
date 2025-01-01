@@ -1,9 +1,16 @@
 @import "../../../styles/variables";
 
+.table__wrapper {
+  max-width: 100%;
+  overflow: auto; 
+  margin: 1em 0;
+}
+
 .container {
   max-width: 100%;
+  min-width: 800px; 
   width: 100%;
-  overflow-x: auto;
+  overflow: hidden auto;
   table-layout: fixed;
   margin: 1em auto 0 auto;
   border: 1px solid $background-color-page;
