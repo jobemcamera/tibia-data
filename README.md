@@ -1,4 +1,5 @@
 # Tibia Data
 
-this is a React App page for studying. The main goal of this app is to improve my skills in developing with React and APIs. The case study for this project is [Tibia Data API](https://tibiadata.com/) because I love Tibia, of course
-In this app, you can find the Tibia content such as creatures, bosses, characters, and worlds.
+Welcome to my study project! This is a React app built to improve my skills in React development and working with APIs. The project is based on the [Tibia Data API](https://tibiadata.com/), which I chose because, as a big fan of Tibia, it perfectly combines my passion for the game and development.
+
+In this app, you can explore various Tibia content, including creatures, bosses, characters, and worlds.
