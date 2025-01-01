@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import SelectFilter from 'components/SelectFilter';
 import Loading from 'components/Loading';
 
-export default function WorldsList({ worlds, isLoading }) {
+export default function WorldsList({ worlds, isLoading, isError }) {
 	const [filters, setFilters] = useState({
 		location: '',
 		pvp_type: '',
@@ -20,7 +20,7 @@ export default function WorldsList({ worlds, isLoading }) {
 		}));
 	};
 
-	const filteredWorlds = worlds.filter((world) => {
+	const filteredWorlds = worlds?.filter((world) => {
 		const isLocationMatched = filters.location === '' || filters.location === world.location;
 		const isPvpTypeMatched = filters.pvp_type === '' || filters.pvp_type === world.pvp_type;
 		const isTransferTypeMatched = filters.transfer_type === '' || filters.transfer_type === world.transfer_type;
@@ -83,17 +83,22 @@ export default function WorldsList({ worlds, isLoading }) {
 					<tbody>
 						{isLoading &&
 							<tr>
-								<td>
+								<td colSpan={6}>
 									<Loading />
 								</td>
 							</tr>
 						}
-						{!isLoading && !filteredWorlds && (
+						{!isLoading && filteredWorlds?.length === 0 && (
 							<tr>
 								<td colSpan={6} className={styles.not__found}>Not found</td>
 							</tr>
 						)}
-						{filteredWorlds.length > 0 && filteredWorlds.map(world => (
+						{isError && (
+							<tr>
+								<td colSpan={6} className={styles.not__found}>Server Error!</td>
+							</tr>
+						)}
+						{filteredWorlds?.length > 0 && filteredWorlds?.map(world => (
 							<tr key={world.name}>
 								<td>
 									<Link to={world.name}>

@@ -7,96 +7,55 @@ import AccountInformation from "../../components/Characters/AccountInformation";
 import OtherCharacters from "../../components/Characters/OtherCharacters";
 import Form from "components/Form";
 import Loading from "components/Loading";
+import { useCharacter } from "hooks/useCharacter";
 
 export default function Character() {
-  const { characterName } = useParams();
-  const [characterData, setCharacterData] = useState(null);
-  const [showLoading, setShowLoading] = useState(false);
-  const [enteredCharacterName, setEnteredCharacterName] = useState(characterName);
   const navigate = useNavigate();
+  const { characterName } = useParams();
+  const [enteredCharacterName, setEnteredCharacterName] = useState(characterName);
 
-  const fetchCharacterData = async (name) => {
-    setShowLoading(true);
-    const formattedName = name.replace(/\+/g, " ");
+  const formattedName = enteredCharacterName.replace(/\+/g, " ")?.toLowerCase();
+  const formattedNameForURL = encodeURIComponent(formattedName);
+  const { data: characterData, isLoading } = useCharacter(formattedNameForURL, {enabled: !!formattedNameForURL});
 
-    try {
-      const response = await fetch(`https://api.tibiadata.com/v3/character/${encodeURIComponent(formattedName)}`);
-      const data = await response.json();
-      const characterData = data.characters;
+  const character = characterData?.character || {}
 
-      if (characterData.character && characterData.character.name.trim() !== "") {
-        setCharacterData(characterData);
-      } else {
-        setCharacterData(null);
-      }
-    } catch (error) {
-      setCharacterData(null);
-    }
-
-    setEnteredCharacterName(formattedName); 
-    setShowLoading(false);
-  };
-
-  // Fetch => URL
   useEffect(() => {
-    setShowLoading(true);
-    fetchCharacterData(characterName);
+    setEnteredCharacterName(characterName);
   }, [characterName]);
 
-  // Fetch => Form
-  const searchCharacterHandler = async (enteredCharacter) => {
-    setShowLoading(true);
+  const searchCharacterHandler = (enteredCharacter) => {
+    if (enteredCharacter.trim() === "") return;
 
-    if (enteredCharacter.trim().length === 0) {
-      setShowLoading(false);
-      return;
-    }
+    setEnteredCharacterName(enteredCharacter);
 
-    try {
-      const response = await fetch(`https://api.tibiadata.com/v3/character/${encodeURIComponent(enteredCharacter)}`);
-      const data = await response.json();
-      const characterData = data.characters;
+    const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
+    navigate(`/characters/${formattedNameForURL}`);
 
-      if (characterData.character && characterData.character.name.trim() !== "") {
-        setCharacterData(characterData);
-      } else {
-        setCharacterData(null);
-      }
-
-      const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
-      navigate(`/characters/${formattedNameForURL}`);
-      window.scrollTo(0, 0);
-    } catch (error) {
-      setCharacterData(null);
-    }
-
-    setShowLoading(false);
-    setEnteredCharacterName(enteredCharacter); 
+    window.scrollTo(0, 0);
   };
 
-  const isLoading = showLoading;
-  const isCharacterNotFound = !characterData;
-  const isCharacterDataAvailable = characterData;
+  const characterNotFound = character?.character?.name === '';
 
   return (
-    <>
+    <section>
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          {isCharacterNotFound && (
-            <CharacterNotFound character={enteredCharacterName} />
+          {characterNotFound && (
+            <CharacterNotFound character={formattedName} />
           )}
-          {isCharacterDataAvailable && (
+          {character && !characterNotFound && (
             <>
-              <CharacterInformation character={characterData.character} />
-              <CharacterAchievements character={characterData.achievements} />
-              <AccountInformation character={characterData.account_information} />
-              <OtherCharacters character={characterData.other_characters} />
+              <CharacterInformation character={character.character} />
+              <CharacterAchievements character={character.achievements} />
+              <AccountInformation character={character.account_information} />
+              <OtherCharacters character={character.other_characters} />
             </>
           )}
         </>
       )}
       <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
-    </>
+    </section>
   );
 }

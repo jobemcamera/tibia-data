@@ -1,88 +1,65 @@
 import MainTitle from 'components/MainTitle';
 import styles from './World.module.scss';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'components/Button';
 import { formatDate } from 'components/SharedFunctions';
 import Loading from 'components/Loading';
 import WorldNotFound from 'components/Worlds/WorldNotFound';
+import { useWorld } from 'hooks/useWorld';
 
 export default function World() {
-  const { world } = useParams();
-  const [worldInfo, setWorldInfo] = useState({});
-  const [enteredWorldName, setEnteredWorldName] = useState('');
-  const [showLoading, setShowLoading] = useState(false);
-
-  useEffect(() => {
-    setShowLoading(true);
-    const fetchWorldInfo = async () => {
-      try {
-        const response = await fetch(`https://api.tibiadata.com/v3/world/${world}`);
-        const jsonData = await response.json();
-        if (jsonData.worlds.world.status != "") {
-          setWorldInfo(jsonData.worlds.world);
-        } else {
-          setWorldInfo({});
-        }
-      } catch (error) {
-        setWorldInfo({});
-      }
-      setEnteredWorldName(world)
-      setShowLoading(false);
-    };
-
-    fetchWorldInfo();
-  }, [world]);
-
   const navigate = useNavigate();
+  const { worldName } = useParams();
+  const { data: worldData, isLoading, isError } = useWorld(worldName, {enabled: !!worldName});
 
-  function backPage() {
-    return navigate('/worlds');
-  }
+  const backPage = () => navigate('/worlds');
 
-  const titleCapitalized = world && world.charAt(0).toUpperCase() + world.slice(1)
+  const world = worldData?.world || {};
+
+  const worldNotFound = world?.status === '';
+
+  const titleCapitalized = worldName && worldName.charAt(0).toUpperCase() + worldName.slice(1)
 
   const tableData = [
-    { label: "Status", value: worldInfo.status },
-    { label: "Players Online", value: worldInfo.players_online },
+    { label: "Status", value: world?.status },
+    { label: "Players Online", value: world?.players_online },
     {
       label: "Online Record",
-      value: worldInfo.record_players
-        ? `${worldInfo.record_players} players on ${formatDate(worldInfo.record_date, "MMMM D YYYY, HH:mm:ss z")}`
+      value: world?.record_players
+        ? `${world?.record_players} players on ${formatDate(world?.record_date, "MMMM D YYYY, HH:mm:ss z")}`
         : null,
     },
     {
       label: "Creation Date",
-      value: worldInfo.creation_date ? formatDate(worldInfo.creation_date, "MMMM YYYY") : null,
+      value: world?.creation_date ? formatDate(world?.creation_date, "MMMM YYYY") : null,
     },
-    { label: "Location", value: worldInfo.location },
-    { label: "PvP Type", value: worldInfo.pvp_type },
+    { label: "Location", value: world?.location },
+    { label: "PvP Type", value: world?.pvp_type },
     {
       label: "World Quest Titles",
-      value: worldInfo.world_quest_titles && worldInfo.world_quest_titles.length > 0
-        ? worldInfo.world_quest_titles.join(', ')
+      value: world?.world_quest_titles && world?.world_quest_titles.length > 0
+        ? world?.world_quest_titles.join(', ')
         : "N/A",
     },
     {
       label: "BattlEye Status",
-      value: worldInfo.battleye_protected === true
-        ? worldInfo.battleye_date !== "release"
-          ? `Protected by BattlEye since ${formatDate(worldInfo.battleye_date, "MMMM DD, YYYY")}`
+      value: world?.battleye_protected === true
+        ? world?.battleye_date !== "release"
+          ? `Protected by BattlEye since ${formatDate(world?.battleye_date, "MMMM DD, YYYY")}`
           : "Protected by BattlEye since its release."
         : "Not protected by BattlEye.",
     },
-    { label: "Game World Type", value: worldInfo.game_world_type },
+    { label: "Game World Type", value: world?.game_world_type },
   ];
-
-  const isLoading = showLoading;
 
   return (
     <>
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          {Object.keys(worldInfo).length == 0 ? (
-            <WorldNotFound world={enteredWorldName} />
+          {worldNotFound || isError ? (
+            <WorldNotFound world={worldName} isError={isError} action={backPage} />
           ) : (
             <section className={styles.container}>
               <MainTitle title={titleCapitalized}>
