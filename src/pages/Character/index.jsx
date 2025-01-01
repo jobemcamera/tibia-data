@@ -12,13 +12,18 @@ import { useCharacter } from "hooks/useCharacter";
 export default function Character() {
   const navigate = useNavigate();
   const { characterName } = useParams();
-  const [enteredCharacterName, setEnteredCharacterName] = useState(characterName);
+  const [enteredCharacterName, setEnteredCharacterName] =
+    useState(characterName);
 
   const formattedName = enteredCharacterName.replace(/\+/g, " ")?.toLowerCase();
   const formattedNameForURL = encodeURIComponent(formattedName);
-  const { data: characterData, isLoading } = useCharacter(formattedNameForURL, {enabled: !!formattedNameForURL});
+  const {
+    data: characterData,
+    isLoading,
+    isError,
+  } = useCharacter(formattedNameForURL, { enabled: !!formattedNameForURL, refetchOnWindowFocus: false});
 
-  const character = characterData?.character || {}
+  const character = characterData?.character || {};
 
   useEffect(() => {
     setEnteredCharacterName(characterName);
@@ -29,23 +34,23 @@ export default function Character() {
 
     setEnteredCharacterName(enteredCharacter);
 
-    const formattedNameForURL = enteredCharacter.replace(/\s/g, '+');
+    const formattedNameForURL = enteredCharacter.replace(/\s/g, "+");
     navigate(`/characters/${formattedNameForURL}`);
 
     window.scrollTo(0, 0);
   };
 
-  const characterNotFound = character?.character?.name === '';
+  const characterNotFound = character?.character?.name === "";
 
   return (
     <section>
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          {characterNotFound && (
+          {(characterNotFound || isError) && (
             <CharacterNotFound character={formattedName} />
           )}
-          {character && !characterNotFound && (
+          {character && !characterNotFound && !isError && (
             <>
               <CharacterInformation character={character.character} />
               <CharacterAchievements character={character.achievements} />
@@ -55,7 +60,10 @@ export default function Character() {
           )}
         </>
       )}
-      <Form name="Search Character" onSearchCharacter={searchCharacterHandler} />
+      <Form
+        name="Search Character"
+        onSearchCharacter={searchCharacterHandler}
+      />
     </section>
   );
 }
