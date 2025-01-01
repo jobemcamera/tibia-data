@@ -14,7 +14,7 @@ export default function Character() {
   const { characterName } = useParams();
   const [enteredCharacterName, setEnteredCharacterName] = useState(characterName);
 
-  const formattedName = enteredCharacterName.replace(/\+/g, " ");
+  const formattedName = enteredCharacterName.replace(/\+/g, " ")?.toLowerCase();
   const formattedNameForURL = encodeURIComponent(formattedName);
   const { data: characterData, isLoading } = useCharacter(formattedNameForURL, {enabled: !!formattedNameForURL});
 
