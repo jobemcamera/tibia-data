@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './Boosted.module.scss'
 import MainTitle from 'components/MainTitle'
 
-export default function Boosted({ boosted, name, text, children }) {
+export default function Boosted({ boosted = {}, name, text, children }) {
     return (
         <div className={styles.boosted__container}>
                 

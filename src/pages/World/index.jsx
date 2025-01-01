@@ -1,6 +1,6 @@
 import MainTitle from 'components/MainTitle';
 import styles from './World.module.scss';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'components/Button';
 import { formatDate } from 'components/SharedFunctions';
@@ -11,9 +11,11 @@ import { useWorld } from 'hooks/useWorld';
 export default function World() {
   const navigate = useNavigate();
   const { worldName } = useParams();
-  const { data: world, isLoading, isError } = useWorld(worldName);
+  const { data: worldData, isLoading, isError } = useWorld(worldName, {enabled: !!worldName});
 
   const backPage = () => navigate('/worlds');
+
+  const world = worldData?.world || {};
 
   const worldNotFound = world?.status === '';
 

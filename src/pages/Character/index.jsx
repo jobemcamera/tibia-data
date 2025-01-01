@@ -16,7 +16,9 @@ export default function Character() {
 
   const formattedName = enteredCharacterName.replace(/\+/g, " ");
   const formattedNameForURL = encodeURIComponent(formattedName);
-  const { data: character, isLoading, isError } = useCharacter(formattedNameForURL);
+  const { data: characterData, isLoading } = useCharacter(formattedNameForURL, {enabled: !!formattedNameForURL});
+
+  const character = characterData?.character || {}
 
   useEffect(() => {
     setEnteredCharacterName(characterName);

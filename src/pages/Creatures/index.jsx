@@ -1,47 +1,23 @@
-import Boosted from 'components/Boosted'
-import Card from 'components/Card'
-import Loading from 'components/Loading'
-import React, { useEffect, useState } from 'react'
+import Boosted from "components/Boosted";
+import Card from "components/Card";
+import Loading from "components/Loading";
+import { useCreatures } from "hooks/useCreatures";
+import React from "react";
 
 export default function Creatures() {
+  const { data: creaturesData, isLoading } = useCreatures();
 
-    const [creatures, setCreatures] = useState([])
-    const [boosted, setBoosted] = useState([])
-    const [removeLoading, setRemoveLoading] = useState(false)
+  const creatures = creaturesData?.creatures || {};
 
-    // Boosted Creature
-    useEffect(() => {
-        const boostedCreature = async () => {
-            const response = await fetch('https://api.tibiadata.com/v3/creatures');
-            const jsonData = await response.json();
-            setBoosted(jsonData.creatures.boosted);
-            setRemoveLoading(true)
-        };
+	if (!creaturesData) return;
 
-        boostedCreature();
-
-    }, [])
-
-    // Creatures
-    useEffect(() => {
-        const creatures = async () => {
-            const response = await fetch('https://api.tibiadata.com/v3/creatures');
-            const jsonData = await response.json();
-            setCreatures(jsonData.creatures.creature_list);
-            setRemoveLoading(true)
-        };
-
-        creatures();
-
-    }, [])
-
-    return (
-        <>
-            <Boosted boosted={boosted} name='Creatures' text="creature" >
-                {!removeLoading && <Loading />}
-            </Boosted>
-            <Card item={creatures} />
-            {!removeLoading && <Loading />}
-        </>
-    )
+  return (
+    <>
+      <Boosted boosted={creatures?.boosted} name="Creatures" text="creature">
+        {isLoading && <Loading />}
+      </Boosted>
+      <Card item={creatures?.creature_list} />
+      {isLoading && <Loading />}
+    </>
+  );
 }

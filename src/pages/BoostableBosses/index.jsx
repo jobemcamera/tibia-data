@@ -1,46 +1,27 @@
-import Boosted from 'components/Boosted';
-import Card from 'components/Card';
-import Loading from 'components/Loading';
-import React, { useEffect, useState } from 'react'
+import Boosted from "components/Boosted";
+import Card from "components/Card";
+import Loading from "components/Loading";
+import { useBoostableBosses } from "hooks/useBoostableBosses";
+import React from "react";
 
 export default function BoostableBosses() {
+  const { data: boostableBossesData, isLoading } = useBoostableBosses();
 
-    const [bosses, setBosses] = useState([])
-    const [boosted, setBoosted] = useState([])
-    const [removeLoading, setRemoveLoading] = useState(false)
+  const boostableBosses = boostableBossesData?.boostable_bosses || {};
 
-    // Boosted Boss
-    useEffect( () => {
-        const boostedBoss = async () => {
-            const response = await fetch('https://api.tibiadata.com/v3/boostablebosses');
-            const jsonData = await response.json();
-            setBoosted(jsonData.boostable_bosses.boosted);
-            setRemoveLoading(true);
-        };
+  if (!boostableBossesData) return;
 
-        boostedBoss();
-    })
-    
-    // Boostable Bosses
-    useEffect(() => {
-        const boostableBosses = async () => {
-            const response = await fetch('https://api.tibiadata.com/v3/boostablebosses');
-            const jsonData = await response.json();
-            setBosses(jsonData.boostable_bosses.boostable_boss_list);
-            setRemoveLoading(true);
-        };
-
-        boostableBosses();
-
-    }, [])
-
-    return (
-        <>
-            <Boosted boosted={boosted} name="Boostable Bosses" text="boss">
-                {!removeLoading && <Loading />}
-            </Boosted>
-            <Card item={bosses}/>
-            {!removeLoading && <Loading />}
-        </>
-    )
+  return (
+    <>
+      <Boosted
+        boosted={boostableBosses?.boosted}
+        name="Boostable Bosses"
+        text="boss"
+      >
+        {isLoading && <Loading />}
+      </Boosted>
+      <Card item={boostableBosses?.boostable_boss_list} />
+      {isLoading && <Loading />}
+    </>
+  );
 }
