@@ -11,8 +11,8 @@ export default function Home() {
 
             <article>
                 <h3>Welcome to Tibia Data!</h3>
-                <p>My name is Jobe Camera and this is a React App page for studying. The main goal of this app is to improve my skills in developing with React and APIs. The case study for this project is <span className={styles.home__link} onClick={openNewTab('https://tibiadata.com/')}>Tibia Data API</span> because I love Tibia, of course.</p>
-                <p>In this app, you can find the Tibia content such as creatures, bosses, characters, and worlds.</p>
+                <p>Hello! My name is Jobe Camera, and this is a React application created for learning purposes. The main objective of this project is to enhance my skills in React development and working with APIs. The case study for this app revolves around the <span className={styles.home__link} onClick={openNewTab('https://tibiadata.com/')}>Tibia Data API</span> — because, as a Tibia enthusiast, it’s a perfect fit!</p>
+                <p>Here, you'll find various Tibia-related content, including creatures, bosses, characters, and worlds, all accessible through a sleek and interactive interface.</p>
             </article>
             <article>
                 <h3 className={styles.home__title}>So, what is Tibia?</h3>
