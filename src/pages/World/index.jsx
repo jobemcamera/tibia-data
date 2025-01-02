@@ -76,7 +76,7 @@ export default function World() {
       {isLoading && <Loading />}
       {!isLoading && (
         <>
-          {worldNotFound || isError ? (
+          {!worldData || worldNotFound || isError ? (
             <WorldNotFound
               world={worldName}
               isError={isError}
