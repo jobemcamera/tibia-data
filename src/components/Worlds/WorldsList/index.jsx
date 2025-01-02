@@ -33,7 +33,7 @@ export default function WorldsList({ worlds, isLoading, isError }) {
   });
 
   const options = {
-    location: ["", "Europe", "South America", "North America"],
+    location: ["", "Europe", "North America", "South America", "Oceania"],
     pvp_type: [
       "",
       "Open PvP",
@@ -47,9 +47,9 @@ export default function WorldsList({ worlds, isLoading, isError }) {
 
   return (
     <>
-      <section>
-        <div className={styles.table__wrapper}>
-          <table className={styles.container}>
+      <section className={styles.container}>
+        <div className={styles.wrapper}>
+          <table>
             <thead>
               <tr>
                 <th>World</th>
@@ -152,6 +152,11 @@ const worldLocation = (location) => {
       flagUrl: "https://www.bandeirasnacionais.com/data/flags/w580/us.webp",
       alt: "The flag of The United States of America",
       title: "USA",
+    },
+    "Oceania": {
+      flagUrl: "https://www.bandeirasnacionais.com/data/flags/w580/au.webp",
+      alt: "The flag of Australia",
+      title: "Australia",
     },
   };
 

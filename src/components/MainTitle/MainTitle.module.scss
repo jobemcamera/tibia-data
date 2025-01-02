@@ -14,8 +14,8 @@
     width: 100%;
     box-sizing: border-box;
 
-    @media (max-width: 600px) {
-      font-size: 1.2rem;
+    @media (max-width: 768px) {
+      font-size: $main-size;
     }
   }
 }
