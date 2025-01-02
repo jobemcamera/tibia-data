@@ -1,87 +1,85 @@
 @import "../../styles/variables";
 
 .container {
-	border: 3px solid $background-color-page;
-	background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
-	background-repeat: repeat-x;
-	background-size: contain;
-	width: 65%;
-	margin: 20px auto;
-	min-height: 52px;
-	border-radius: 15px;
-	box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
-	display: flex;
-	justify-content: space-between;
-	padding: 0 2.45rem;
-	align-items: center;
-	position: relative;
+  border: 3px solid $background-color-page;
+  background-image: url('https://static.tibia.com/images/global/content/title-background-green.gif');
+  background-repeat: repeat-x;
+  background-size: contain;
+  width: 65%;
+  margin: 20px auto;
+  min-height: 52px;
+  border-radius: 15px;
+  box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2.45rem;
+  align-items: center;
+  position: relative;
 
-	.logoContainer {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		width: 150px;
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 150px;
 
-		h1 {
-			color: $title-color;
-			font-size: 20px;
-		}
-	}
+    h1 {
+      color: $title-color;
+      font-size: 20px;
+    }
+  }
 
-	button {
-		background-color: $background-color-button-start;
-		border-radius: 10px;
-		border: 3px solid $background-color-button-border;
-		display: none;
+  button {
+    background-color: $background-color-button-start;
+    border-radius: 10px;
+    border: 3px solid $background-color-button-border;
+    display: none;
+    cursor: pointer;
 
-		@media (max-width: 1200px) {
-			display: block;
-		}
+    @media (max-width: 1024px) {
+      display: block;
+    }
 
-		img {
-			background-color: $background-color-button-start;
-			width: 24px;
-			height: 24px;
-		}
-	}
+    img {
+      background-color: $background-color-button-start;
+      width: 24px;
+      height: 24px;
+    }
+  }
 
-	nav {
-		display: flex;
+  nav {
+    display: flex;
 
-		ul {
-			display: flex;
-			justify-content: space-between;
-			flex-direction: row;
-			flex-wrap: wrap;
-			text-align: center;
-			align-items: center;
-			padding: 0;
+    ul {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-align: center;
+      align-items: center;
+      padding: 0;
 
-			@media (max-width: 1200px) {
-				display: none;
-			}
-		}
-	}
+      @media (max-width: 1024px) {
+        display: none;
+      }
+    }
+  }
 
-	.navigationOpenedMenu {
-		display: flex;
-	}
+  .menuOpenedNav {
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: $background-color-home;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    z-index: 999;
+    padding: 10px;
 
-	.menuOpenedNav {
-		position: absolute;
-		right: 35px;
-		top: 60px;
-		border-radius: 10px;
-		background-color: $background-color-home;
-		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-		z-index: 999;
-	}
-
-	.menuOpenedUl {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-end;
-		gap: 10px;
-		padding-right: 10px;
-	}
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      padding-right: 10px;
+    }
+  }
 }
