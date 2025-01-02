@@ -9,8 +9,6 @@ export default function BoostableBosses() {
 
   const boostableBosses = boostableBossesData?.boostable_bosses || {};
 
-  if (!boostableBossesData) return;
-
   return (
     <>
       <Boosted

@@ -9,8 +9,6 @@ export default function Creatures() {
 
   const creatures = creaturesData?.creatures || {};
 
-	if (!creaturesData) return;
-
   return (
     <>
       <Boosted boosted={creatures?.boosted} name="Creatures" text="creature">
