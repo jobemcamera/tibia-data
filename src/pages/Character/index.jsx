@@ -22,7 +22,7 @@ export default function Character() {
     isLoading,
     isError,
   } = useCharacter(formattedNameForURL, { enabled: !!formattedNameForURL, refetchOnWindowFocus: false});
-  console.log(characterData, isLoading, isError)
+
   const character = characterData?.character || {};
 
   useEffect(() => {
