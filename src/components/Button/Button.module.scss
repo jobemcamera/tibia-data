@@ -14,8 +14,8 @@
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
     text-shadow: $text-shadow;
 
-    @media (max-width: 600px) {
-      font-size: $main-size;
+    @media (max-width: 768px) {
+      font-size: $mobile-size;
     }
 
     &:hover {

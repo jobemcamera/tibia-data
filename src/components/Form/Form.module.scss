@@ -36,7 +36,11 @@
       label {
         color: $main-color;
         font-weight: 700;
-        min-width: 160px;
+        min-width: fit-content;
+
+        @media (max-width: 768px) {
+          font-size: $mobile-size;
+        }
       }
 
       input {
@@ -49,9 +53,8 @@
 
         @media (max-width: 768px) {
           width: 80%;
+          font-size: $mobile-size;
         }
-
-
       }
     }
 
