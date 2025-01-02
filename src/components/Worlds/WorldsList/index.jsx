@@ -47,9 +47,9 @@ export default function WorldsList({ worlds, isLoading, isError }) {
 
   return (
     <>
-      <section>
-        <div className={styles.table__wrapper}>
-          <table className={styles.container}>
+      <section className={styles.container}>
+        <div className={styles.wrapper}>
+          <table>
             <thead>
               <tr>
                 <th>World</th>
