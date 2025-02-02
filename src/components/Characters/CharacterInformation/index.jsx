@@ -20,7 +20,14 @@ function CharacterInformation({ character }) {
       { label: "Vocation", value: character.vocation },
       { label: "Level", value: character.level },
       { label: "Achievement Points", value: character.achievement_points },
-      { label: "World", value: character.world },
+      {
+        label: "World",
+        value: (
+          <Link to={`/worlds/${character.world.replace(/\s/g, "+")}`}>
+            {character.world}
+          </Link>
+        ),
+      },
       { label: "Residence", value: character.residence },
       character.married_to && {
         label: "Married To",
