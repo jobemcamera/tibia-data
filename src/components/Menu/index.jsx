@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
-import styles from './Menu.module.scss';
-import MenuLink from 'components/MenuLink';
-import Logo from '../../../src/assets/svg/favicon.ico';
+import React, { useEffect, useState, useRef } from "react";
+import styles from "./Menu.module.scss";
+import MenuLink from "components/MenuLink";
+import Logo from "../../../src/assets/svg/favicon.ico";
 
 export default function Menu() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,16 +20,16 @@ export default function Menu() {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-    document.addEventListener('mousedown', handleClickOutside);
+    window.addEventListener("resize", handleWindowResize);
+    document.addEventListener("mousedown", handleClickOutside);
 
     if (window.innerWidth >= edgeSize) {
       setMenuOpen(false);
     }
 
     return () => {
-      window.removeEventListener('resize', handleWindowResize);
-      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener("resize", handleWindowResize);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -61,16 +61,12 @@ export default function Menu() {
 }
 
 const MenuLinkDesktop = () => {
-  return (
-    <nav className={styles.nav}>
-      {menuLinksRender()}
-    </nav>
-  );
+  return <nav className={styles.nav}>{<MenuLinksRender />}</nav>;
 };
 
 const MenuLinkMobile = ({ toggleMenu, menuOpen, menuRef }) => {
   const backgroundMenuHamburguer =
-    'https://static.tibia.com/images/global/header/mobile/button-icon-menu.png';
+    "https://static.tibia.com/images/global/header/mobile/button-icon-menu.png";
 
   const navStyle = menuOpen ? `${styles.menuOpenedNav}` : styles.nav;
   const ulStyle = menuOpen ? `${styles.menuOpenedUl}` : styles.ul;
@@ -82,16 +78,16 @@ const MenuLinkMobile = ({ toggleMenu, menuOpen, menuRef }) => {
       </button>
       {menuOpen && (
         <nav className={navStyle}>
-          {menuLinksRender(null, ulStyle)}
+          {<MenuLinksRender toggleMenu={toggleMenu} classNameProps={ulStyle} />}
         </nav>
       )}
     </div>
   );
 };
 
-const menuLinksRender = (toggleMenu, className) => {
+const MenuLinksRender = ({ toggleMenu, classNameProps }) => {
   return (
-    <ul className={className}>
+    <ul className={classNameProps}>
       <MenuLink toggleMenu={toggleMenu} to="/">
         Home
       </MenuLink>
