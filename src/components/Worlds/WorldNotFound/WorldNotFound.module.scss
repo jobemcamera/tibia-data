@@ -8,5 +8,9 @@
 
   p {
     padding: 0 1em;
+
+    @media (max-width: 768px) {
+      font-size: $mobile-size;
+    }
   }
 }

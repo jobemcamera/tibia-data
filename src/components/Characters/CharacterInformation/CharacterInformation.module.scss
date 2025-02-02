@@ -40,12 +40,13 @@
 
         &:first-child {
           width: 20%;
+          min-width: 100px;
           font-weight: bold;
           vertical-align: top;
         }
 
         &:last-child {
-          min-width: 300px;
+          min-width: 140px;
         }
 
         a {

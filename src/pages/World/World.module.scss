@@ -1,7 +1,6 @@
 @import "../../styles/variables";
 
 .container {
-
   table {
     max-width: 1240px;
     width: 100%;
@@ -11,6 +10,10 @@
     box-shadow: 7px 7px 15px rgba(0, 0, 0, 0.2);
 
     tr {
+      @media (max-width: 768px) {
+        font-size: $mobile-size;
+      }
+
       &:nth-child(even) {
         background-color: $background-color-content;
       }
@@ -20,12 +23,19 @@
       }
 
       td {
-        max-width: 60px;
         height: 30px;
         padding: 0 10px;
         line-height: 22px;
+
+        &:first-child {
+          width: 20%;
+          min-width: 170px;
+
+          @media (max-width: 768px) {
+            min-width: 140px;
+          }
+        }
       }
     }
-
   }
 }

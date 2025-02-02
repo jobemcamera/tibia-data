@@ -5,9 +5,19 @@
 	font-size: 1rem;
 	padding: 0.062rem 0.312rem;
 	border: none;
+	min-width: 140px;
+	max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
 	option {
 		background-color: $background-color-content;
 		font-size: 1.125rem;
+		width: fit-content;
+	}
+
+	@media (max-width: 768px) {
+		font-size: $mobile-size;
 	}
 }
