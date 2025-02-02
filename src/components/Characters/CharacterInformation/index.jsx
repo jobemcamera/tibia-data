@@ -12,6 +12,10 @@ function CharacterInformation({ character }) {
         label: "Title",
         value: `${character.title} (${character.unlocked_titles} titles unlocked)`,
       },
+      character.former_names && {
+        label: "Former Names",
+        value: character.former_names.join(", "),
+      },
       { label: "Sex", value: character.sex },
       { label: "Vocation", value: character.vocation },
       { label: "Level", value: character.level },
