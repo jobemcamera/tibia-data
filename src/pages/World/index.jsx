@@ -18,6 +18,7 @@ export default function World() {
   } = useWorld(worldName, {
     enabled: !!worldName,
     refetchOnWindowFocus: false,
+    retry: 2
   });
 
   const backPage = () => navigate("/worlds");

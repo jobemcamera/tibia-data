@@ -21,7 +21,11 @@ export default function Character() {
     data: characterData,
     isLoading,
     isError,
-  } = useCharacter(formattedNameForURL, { enabled: !!formattedNameForURL, refetchOnWindowFocus: false});
+  } = useCharacter(formattedNameForURL, {
+    enabled: !!formattedNameForURL,
+    refetchOnWindowFocus: false,
+    retry: 2,
+  });
 
   const character = characterData?.character || {};
 
